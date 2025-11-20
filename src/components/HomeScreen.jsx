@@ -19,6 +19,7 @@ const HomeScreen = () => {
                 <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>
                 <p style={{ color: getStatColor(pet.energy) }}>Energy: {pet.energy}</p>
                 <p>Adventures Completed: {pet.adventuresCompleted}</p>
+                <p>Pet Stage: {pet.stage}</p>
 
                 <button onClick={feedPet} disabled={isAdventuring}>
                 Feed

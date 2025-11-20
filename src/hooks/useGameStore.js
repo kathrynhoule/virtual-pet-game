@@ -58,20 +58,70 @@ const useGameStore = create((set) => ({
         },
     })),
 
-    endAdventure: () =>
-        set((state) => {
+endAdventure: () =>
+    set((state) => {
             const newEntry = {
-                startTime: state.currentAdventure?.startTime || Date.now() - 10000,
-                endTime: Date.now(),
-                location: state.currentAdventure?.location || "Unknown",
+            startTime: state.currentAdventure?.startTime || Date.now() - 10000,
+            endTime: Date.now(),
+            location: state.currentAdventure?.location || "Unknown",
         };
+
+        // new stats after adventure
+        const newHunger = Math.max(state.pet.hunger - 10, 0);
+        const newEnergy = Math.max(state.pet.energy - 15, 0);
+
+        const updatedPet = {
+            ...state.pet,
+            hunger: newHunger,
+            energy: newEnergy,
+            adventuresCompleted: state.pet.adventuresCompleted + 1,
+            adventureHistory: [...state.pet.adventureHistory, newEntry],
+        };
+
+        //if evolution happens
+        let newStage = updatedPet.stage;
+        const dayAdventures = updatedPet.adventureHistory.filter((entry) => {
+        const hour = new Date(entry.startTime).getHours();
+        return hour >= 6 && hour < 18;
+        }).length;
+
+        if (dayAdventures >= 3 && updatedPet.stage < 1) {
+            newStage = 1;
+        }
 
         return {
             currentAdventure: null,
             pet: {
+                ...updatedPet,
+                stage: newStage,
+            },
+        };
+    }),
+
+
+    evolvePetIfEligible: () =>
+    set((state) => {
+        const now = new Date();
+
+        //counts adventures that start between 6AM and 6PM
+        const dayAdventures = state.pet.adventureHistory.filter((entry) => {
+            const hour = new Date(entry.startTime).getHours();
+            return hour >= 6 && hour < 18;
+        }).length;
+
+        let newStage = state.pet.stage;
+
+        //evolve to stage 1 if 3 daytime adventures completed
+        if (dayAdventures >= 3 && state.pet.stage < 1) {
+            newStage = 1;
+        }
+
+        //will add more evo rules here later
+
+        return {
+            pet: {
             ...state.pet,
-            adventuresCompleted: state.pet.adventuresCompleted + 1,
-            adventureHistory: [...state.pet.adventureHistory, newEntry],
+            stage: newStage,
             },
         };
     }),

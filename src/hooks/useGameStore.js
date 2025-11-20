@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { determinePetStage } from '../utils/petEvoRules';
 
 const useGameStore = create((set) => ({
     currentScreen: "home",
@@ -58,73 +59,53 @@ const useGameStore = create((set) => ({
         },
     })),
 
-endAdventure: () =>
-    set((state) => {
-            const newEntry = {
-            startTime: state.currentAdventure?.startTime || Date.now() - 10000,
-            endTime: Date.now(),
-            location: state.currentAdventure?.location || "Unknown",
-        };
+    endAdventure: () =>
+        set((state) => {
+                const newEntry = {
+                startTime: state.currentAdventure?.startTime || Date.now() - 10000,
+                endTime: Date.now(),
+                location: state.currentAdventure?.location || "Unknown",
+            };
 
-        // new stats after adventure
-        const newHunger = Math.max(state.pet.hunger - 10, 0);
-        const newEnergy = Math.max(state.pet.energy - 15, 0);
+            // new stats after adventure
+            const newHunger = Math.max(state.pet.hunger - 10, 0);
+            const newEnergy = Math.max(state.pet.energy - 15, 0);
 
-        const updatedPet = {
-            ...state.pet,
-            hunger: newHunger,
-            energy: newEnergy,
-            adventuresCompleted: state.pet.adventuresCompleted + 1,
-            adventureHistory: [...state.pet.adventureHistory, newEntry],
-        };
+            const updatedPet = {
+                ...state.pet,
+                hunger: newHunger,
+                energy: newEnergy,
+                adventuresCompleted: state.pet.adventuresCompleted + 1,
+                adventureHistory: [...state.pet.adventureHistory, newEntry],
+            };
 
-        //if evolution happens
-        let newStage = updatedPet.stage;
-        const dayAdventures = updatedPet.adventureHistory.filter((entry) => {
-        const hour = new Date(entry.startTime).getHours();
-        return hour >= 6 && hour < 18;
-        }).length;
-
-        if (dayAdventures >= 3 && updatedPet.stage < 1) {
-            newStage = 1;
-        }
-
-        return {
-            currentAdventure: null,
-            pet: {
-                ...updatedPet,
-                stage: newStage,
-            },
-        };
-    }),
-
-
-    evolvePetIfEligible: () =>
-    set((state) => {
-        const now = new Date();
-
-        //counts adventures that start between 6AM and 6PM
-        const dayAdventures = state.pet.adventureHistory.filter((entry) => {
+            //if evolution happens
+            let newStage = updatedPet.stage;
+            const dayAdventures = updatedPet.adventureHistory.filter((entry) => {
             const hour = new Date(entry.startTime).getHours();
             return hour >= 6 && hour < 18;
-        }).length;
+            }).length;
 
-        let newStage = state.pet.stage;
+            if (dayAdventures >= 3 && updatedPet.stage < 1) {
+                newStage = 1;
+            }
 
-        //evolve to stage 1 if 3 daytime adventures completed
-        if (dayAdventures >= 3 && state.pet.stage < 1) {
-            newStage = 1;
-        }
+            return {
+                currentAdventure: null,
+                pet: {
+                    ...updatedPet,
+                    stage: determinePetStage(updatedPet),
+                },
+            };
+        }),
 
-        //will add more evo rules here later
-
-        return {
-            pet: {
-            ...state.pet,
-            stage: newStage,
-            },
-        };
-    }),
+    evolvePetIfEligible: () =>
+    set((state) => ({
+        pet: {
+        ...state.pet,
+        stage: determinePetStage(state.pet),
+        },
+    })),
 }));
 
 export default useGameStore;

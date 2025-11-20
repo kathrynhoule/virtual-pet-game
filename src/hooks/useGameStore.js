@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { determinePetStage } from '../utils/petEvoRules';
+import { adventureLocations } from '../data/adventures';
 
 const useGameStore = create((set) => ({
     currentScreen: "home",
@@ -13,6 +14,8 @@ const useGameStore = create((set) => ({
         energy: 100,
         adventuresCompleted: 0,
         adventureHistory: [],
+        inventory: [],
+        money: 0,
     },
     xp: 0,
     currentAdventure: null,
@@ -60,44 +63,57 @@ const useGameStore = create((set) => ({
     })),
 
     endAdventure: () =>
-        set((state) => {
-                const newEntry = {
-                startTime: state.currentAdventure?.startTime || Date.now() - 10000,
-                endTime: Date.now(),
-                location: state.currentAdventure?.location || "Unknown",
-            };
+    set((state) => {
+        const currentLocation = state.currentAdventure?.location || 'Unknown';
+        const locationData = adventureLocations[currentLocation];
 
-            // new stats after adventure
-            const newHunger = Math.max(state.pet.hunger - 10, 0);
-            const newEnergy = Math.max(state.pet.energy - 15, 0);
+        const newEntry = {
+            startTime: state.currentAdventure?.startTime || Date.now() - 10000,
+            endTime: Date.now(),
+            location: currentLocation,
+        };
 
-            const updatedPet = {
-                ...state.pet,
-                hunger: newHunger,
-                energy: newEnergy,
-                adventuresCompleted: state.pet.adventuresCompleted + 1,
-                adventureHistory: [...state.pet.adventureHistory, newEntry],
-            };
+        //affect stats
+        const newHunger = Math.max(state.pet.hunger - 10, 0);
+        const newEnergy = Math.max(state.pet.energy - 15, 0);
 
-            //if evolution happens
-            let newStage = updatedPet.stage;
-            const dayAdventures = updatedPet.adventureHistory.filter((entry) => {
-            const hour = new Date(entry.startTime).getHours();
-            return hour >= 6 && hour < 18;
-            }).length;
+        //money reward
+        let earnedMoney = 0;
+        if (locationData?.moneyRange) {
+            const [min, max] = locationData.moneyRange;
+            earnedMoney = Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
-            if (dayAdventures >= 3 && updatedPet.stage < 1) {
-                newStage = 1;
-            }
+        //item rewards
+        const earnedItems = [];
+        if (locationData?.items) {
+            locationData.items.forEach(item => {
+                if (Math.random() < item.chance) {
+                earnedItems.push(item.name);
+                }
+            });
+        }
 
-            return {
-                currentAdventure: null,
-                pet: {
-                    ...updatedPet,
-                    stage: determinePetStage(updatedPet),
-                },
-            };
-        }),
+        const updatedPet = {
+            ...state.pet,
+            hunger: newHunger,
+            energy: newEnergy,
+            adventuresCompleted: state.pet.adventuresCompleted + 1,
+            adventureHistory: [...state.pet.adventureHistory, newEntry],
+            money: state.pet.money + earnedMoney,
+            inventory: [...state.pet.inventory, ...earnedItems],
+        };
+
+        const newStage = determinePetStage(updatedPet);
+
+        return {
+            currentAdventure: null,
+            pet: {
+                ...updatedPet,
+                stage: newStage,
+            },
+        };
+    }),
 
     evolvePetIfEligible: () =>
     set((state) => ({

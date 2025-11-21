@@ -2,6 +2,9 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { adventureLocations } from '../data/adventures'
 
+//will get rid of the inline styling later
+//i don't want to do css right now
+
 const AdventureScreen = () => {
     const { currentAdventure, setScreen, startAdventure, pet } = useGameStore();
 
@@ -12,6 +15,9 @@ const AdventureScreen = () => {
     const adventureData = currentAdventure
         ? adventureLocations[currentAdventure.location]
         : null;
+
+    //pet can't be hungry or unhappy or both to go on an adventure
+    const canAdventure = pet.hunger > 0 && pet.happiness > 0;
 
     return (
         <div>
@@ -35,10 +41,18 @@ const AdventureScreen = () => {
                 <div>
                     <p>Select an adventure:</p>
 
+                    {!canAdventure && (
+                        <p style={{ color: "red" }}>
+                            Your pet is too unhappy or too hungry to go adventuring!
+                        </p>
+                    )}
+
+
                     {unlockedLocations.map(loc => (
                         <button
                             key={loc.name}
                             onClick={() => startAdventure(loc.name)}
+                            disabled={!canAdventure}
                         >
                             Go to {loc.name}
                         </button>

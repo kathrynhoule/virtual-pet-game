@@ -63,6 +63,10 @@ const HomeScreen = () => {
                 <button onClick={() => setScreen("adventure")}>
                     Go to Adventure
                 </button>
+
+                <button onClick={() => setScreen("shop")}>
+                    Go to Shops
+                </button>
             </div>
     );
 }

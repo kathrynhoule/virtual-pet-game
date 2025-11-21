@@ -89,9 +89,7 @@ endAdventure: () =>
         const updatedInventory = {
             ...state.inventory,
             money: state.inventory.money + rewards.money,
-            items: rewards.item
-                ? [...state.inventory.items, rewards.item]
-                : state.inventory.items,
+            items: [...state.inventory.items, ...rewards.items],
         };
 
         //evolve pet if applicable

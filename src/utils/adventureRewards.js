@@ -1,7 +1,7 @@
 function generateAdventureRewards(locationData) {
     const results = {
         money: 0,
-        item: null,
+        items: [],
     };
 
     //for money
@@ -18,8 +18,7 @@ function generateAdventureRewards(locationData) {
     const items = locationData.rewards.items;
     for (const item of items) {
         if (Math.random() < item.chance) {
-            results.item = item.name;
-            break; // Stop after first successful roll
+            results.items.push(item.name);
         }
     }
 

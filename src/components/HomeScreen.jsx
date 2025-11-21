@@ -4,6 +4,9 @@ import { petStages } from '../data/pets'
 import InventoryScreen from './InventoryScreen'
 import { starterRoomOptions } from '../data/rooms'
 
+//this is a little hell to look at right now
+//will fix later
+
 const HomeScreen = () => {
     const { pet, feedPet, playWithPet, restPet, setScreen, currentAdventure, inventory } = useGameStore();
 

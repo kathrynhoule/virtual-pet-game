@@ -1,5 +1,6 @@
 //will add in placeholder images and data for shopkeepers later
 //don't feel like it right now
+//also need a few more shops later on
 
 export const shopLocations = {
     General: {

@@ -1,5 +1,10 @@
 import React from 'react'
 
+//displays inventory
+//i gotta do something else with this later
+//will make it not directly on the home screen
+//also need to display multiples of the same item in one line so inventory doesn't end up a million lines long like it currently does
+
 const InventoryScreen = ({ inventory }) => {
     return (
         <div>

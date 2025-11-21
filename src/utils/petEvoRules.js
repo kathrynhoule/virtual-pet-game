@@ -1,5 +1,8 @@
 import React from 'react'
 
+//will need a major overhaul when i change how evos are done
+//but it works for now
+
 export const determinePetStage = (pet) => {
     let newStage = pet.stage;
 

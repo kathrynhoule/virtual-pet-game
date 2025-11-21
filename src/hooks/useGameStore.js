@@ -4,6 +4,9 @@ import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
 
+//oh it's hell to look at right now with everything in one file
+//i'll do something about that later
+
 const useGameStore = create((set) => ({
     currentScreen: "home",
 

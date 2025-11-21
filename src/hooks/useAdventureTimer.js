@@ -2,6 +2,8 @@ import React from 'react'
 import { useEffect } from 'react'
 import useGameStore from './useGameStore'
 
+//this could be a bit more readable for future me's sake
+
 const useAdventureTimer = () => {
     useEffect(() => {
         const interval = setInterval(() => {

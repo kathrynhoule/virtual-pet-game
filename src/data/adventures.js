@@ -10,6 +10,11 @@ import snowImg from '../assets/locations/Snow.png';
 import spaceImg from '../assets/locations/Space.png';
 import volcanoImg from '../assets/locations/Volcano.png';
 
+//data for adventure locations
+//minimal for now, will expand later
+//might add more items
+//might add events for the locations as well
+
 export const adventureLocations = {
     Forest: {
         name: 'Forest',

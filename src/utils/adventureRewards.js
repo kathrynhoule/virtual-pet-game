@@ -1,3 +1,7 @@
+//generates rewards for adventures based on location data
+//used in useGameStore.js
+//will need an update if i add a luck stat later
+
 function generateAdventureRewards(locationData) {
     const results = {
         money: 0,

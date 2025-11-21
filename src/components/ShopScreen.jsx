@@ -6,6 +6,10 @@ import { useState } from 'react'
 //will add purchasing logic later
 //don't feel like it right now
 
+//this also looks like hell right now
+//i don't want to change it right now though
+//so it is what it is for the time being
+
 const ShopScreen = () => {
     const { pet, inventory, setScreen, purchaseItem } = useGameStore();
 

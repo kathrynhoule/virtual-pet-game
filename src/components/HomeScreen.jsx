@@ -2,6 +2,7 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { petStages } from '../data/pets'
 import InventoryScreen from './InventoryScreen'
+import { starterRoomOptions } from '../data/rooms'
 
 const HomeScreen = () => {
     const { pet, feedPet, playWithPet, restPet, setScreen, currentAdventure, inventory } = useGameStore();
@@ -14,10 +15,13 @@ const HomeScreen = () => {
 
     const currentPetData = petStages[pet.stage];
 
+    const currentRoom = starterRoomOptions.Old;
+
     const isAdventuring = currentAdventure !== null;
 
     return (
             <div>
+                <img src={currentRoom.image} alt={currentRoom.name} width={150} />
                 <h2>{currentPetData.name}</h2>
                 <img src={currentPetData.image} alt={currentPetData.name} width={150} />
 

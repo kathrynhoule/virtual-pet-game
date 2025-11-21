@@ -15,6 +15,7 @@ export const adventureLocations = {
         name: 'Forest',
         image: forestImg,
         description: 'Placeholder description',
+        unlockAt: 0,
         rewards: {
             money: { min: 2, max: 9, chance: 1.0 },
             items: [
@@ -27,6 +28,7 @@ export const adventureLocations = {
         name: 'Cave',
         image: caveImg,
         description: 'Placeholder description',
+        unlockAt: 5,
         rewards: {
             money: { min: 10, max: 20, chance: 0.8 },
             items: [
@@ -39,6 +41,7 @@ export const adventureLocations = {
         name: 'Beach',
         image: beachImg,
         description: 'Placeholder description',
+        unlockAt: 5,
         rewards: {
             money: { min: 5, max: 20, chance: 0.6 },
             items: [
@@ -52,6 +55,7 @@ export const adventureLocations = {
         name: 'City',
         image: cityImg,
         description: 'Placeholder description',
+        unlockAt: 20,
         rewards: {
             money: { min: 20, max: 40, chance: 0.9 },
             items: [
@@ -64,6 +68,7 @@ export const adventureLocations = {
         name: 'Desert',
         image: desertImg,
         description: 'Placeholder description',
+        unlockAt: 20,
         rewards: {
             money: { min: 10, max: 40, chance: 0.6 },
             items: [
@@ -76,6 +81,7 @@ export const adventureLocations = {
         name: 'Lab',
         image: labImg,
         description: 'Placeholder description',
+        unlockAt: 40,
         rewards: {
             money: { min: 1, max: 10, chance: 0.7 },
             items: [
@@ -88,6 +94,7 @@ export const adventureLocations = {
         name: 'Parlor',
         image: parlorImg,
         description: 'Placeholder description',
+        unlockAt: 40,
         rewards: {
             money: { min: 10, max: 25, chance: 0.7 },
             items: [
@@ -100,6 +107,7 @@ export const adventureLocations = {
         name: 'Seafloor',
         image: seafloorImg,
         description: 'Placeholder description',
+        unlockAt: 75,
         rewards: {
             money: { min: 20, max: 50, chance: 0.5 },
             items: [
@@ -113,6 +121,7 @@ export const adventureLocations = {
         name: 'Snow',
         image: snowImg,
         description: 'Placeholder description',
+        unlockAt: 75,
         rewards: {
             money: { min: 2, max: 8, chance: 0.5 },
             items: [
@@ -125,6 +134,7 @@ export const adventureLocations = {
         name: 'Space',
         image: spaceImg,
         description: 'Placeholder description',
+        unlockAt: 100,
         rewards: {
             money: { min: 2, max: 8, chance: 0.4 },
             items: [
@@ -137,6 +147,7 @@ export const adventureLocations = {
         name: 'Volcano',
         image: volcanoImg,
         description: 'Placeholder description',
+        unlockAt: 100,
         rewards: {
             money: { min: 5, max: 25, chance: 0.9 },
             items: [

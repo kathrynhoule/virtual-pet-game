@@ -1,5 +1,5 @@
-import oldRoomImg from '../assets/old-room.png'
-import pinkRoomImg from '../assets/pink-room.png'
+import oldRoomImg from '../assets/locations/old-room.png'
+import pinkRoomImg from '../assets/locations/pink-room.png'
 
 export const starterRoomOptions = {
     Old: {

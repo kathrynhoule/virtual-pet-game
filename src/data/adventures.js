@@ -1,14 +1,14 @@
-import forestImg from '../assets/Forest.png';
-import caveImg from '../assets/Cave.png';
-import beachImg from '../assets/Beach.png';
-import cityImg from '../assets/City.png';
-import desertImg from '../assets/Desert.png';
-import labImg from '../assets/Lab.png';
-import parlorImg from '../assets/Parlor.png';
-import seafloorImg from '../assets/Seafloor.png';
-import snowImg from '../assets/Snow.png';
-import spaceImg from '../assets/Space.png';
-import volcanoImg from '../assets/Volcano.png';
+import forestImg from '../assets/locations/Forest.png';
+import caveImg from '../assets/locations/Cave.png';
+import beachImg from '../assets/locations/Beach.png';
+import cityImg from '../assets/locations/City.png';
+import desertImg from '../assets/locations/Desert.png';
+import labImg from '../assets/locations/Lab.png';
+import parlorImg from '../assets/locations/Parlor.png';
+import seafloorImg from '../assets/locations/Seafloor.png';
+import snowImg from '../assets/locations/Snow.png';
+import spaceImg from '../assets/locations/Space.png';
+import volcanoImg from '../assets/locations/Volcano.png';
 
 export const adventureLocations = {
     Forest: {

@@ -1,6 +1,6 @@
-import basePetImg from '../assets/base-sprite.png'
-import dayPetImg from '../assets/day-sprite.png'
-import nightPetImg from '../assets/night-sprite.png'
+import basePetImg from '../assets/pets/base-sprite.png'
+import dayPetImg from '../assets/pets/day-sprite.png'
+import nightPetImg from '../assets/pets/night-sprite.png'
 
 export const petStages = {
     0: {

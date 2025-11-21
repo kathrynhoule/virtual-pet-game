@@ -1,9 +1,13 @@
 import { create } from 'zustand'
-import { determinePetStage } from '../utils/petEvoRules';
-import { adventureLocations } from '../data/adventures';
+import { determinePetStage } from '../utils/petEvoRules'
+import { adventureLocations } from '../data/adventures'
+import generateAdventureRewards from '../utils/adventureRewards'
+import { defaultInventory } from '../data/inventory'
 
 const useGameStore = create((set) => ({
     currentScreen: "home",
+
+    inventory: defaultInventory,
 
     setScreen: (screen) => set({ currentScreen: screen }),
 
@@ -14,10 +18,7 @@ const useGameStore = create((set) => ({
         energy: 100,
         adventuresCompleted: 0,
         adventureHistory: [],
-        inventory: [],
-        money: 0,
     },
-    xp: 0,
     currentAdventure: null,
 
     decayRates: {
@@ -62,48 +63,38 @@ const useGameStore = create((set) => ({
         },
     })),
 
-    endAdventure: () =>
+endAdventure: () =>
     set((state) => {
         const currentLocation = state.currentAdventure?.location || 'Unknown';
         const locationData = adventureLocations[currentLocation];
 
         const newEntry = {
-            startTime: state.currentAdventure?.startTime || Date.now() - 10000,
-            endTime: Date.now(),
-            location: currentLocation,
+        startTime: state.currentAdventure?.startTime || Date.now() - 10000,
+        endTime: Date.now(),
+        location: currentLocation,
         };
 
-        //affect stats
-        const newHunger = Math.max(state.pet.hunger - 10, 0);
-        const newEnergy = Math.max(state.pet.energy - 15, 0);
-
-        //money reward
-        let earnedMoney = 0;
-        if (locationData?.moneyRange) {
-            const [min, max] = locationData.moneyRange;
-            earnedMoney = Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        //item rewards
-        const earnedItems = [];
-        if (locationData?.items) {
-            locationData.items.forEach(item => {
-                if (Math.random() < item.chance) {
-                earnedItems.push(item.name);
-                }
-            });
-        }
-
+        //update pet stats
         const updatedPet = {
             ...state.pet,
-            hunger: newHunger,
-            energy: newEnergy,
+            hunger: Math.max(state.pet.hunger - 10, 0),
+            energy: Math.max(state.pet.energy - 15, 0),
             adventuresCompleted: state.pet.adventuresCompleted + 1,
             adventureHistory: [...state.pet.adventureHistory, newEntry],
-            money: state.pet.money + earnedMoney,
-            inventory: [...state.pet.inventory, ...earnedItems],
         };
 
+        //rewards
+        const rewards = generateAdventureRewards(locationData);
+
+        const updatedInventory = {
+            ...state.inventory,
+            money: state.inventory.money + rewards.money,
+            items: rewards.item
+                ? [...state.inventory.items, rewards.item]
+                : state.inventory.items,
+        };
+
+        //evolve pet if applicable
         const newStage = determinePetStage(updatedPet);
 
         return {
@@ -112,16 +103,9 @@ const useGameStore = create((set) => ({
                 ...updatedPet,
                 stage: newStage,
             },
+            inventory: updatedInventory,
         };
     }),
-
-    evolvePetIfEligible: () =>
-    set((state) => ({
-        pet: {
-        ...state.pet,
-        stage: determinePetStage(state.pet),
-        },
-    })),
 }));
 
 export default useGameStore;

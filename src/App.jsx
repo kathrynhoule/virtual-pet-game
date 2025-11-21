@@ -20,7 +20,7 @@ const App = () => {
 
     return (
         <GameProvider>
-            <Current />;
+            <Current />
         </GameProvider>
     );
 }

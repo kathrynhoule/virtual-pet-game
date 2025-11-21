@@ -1,9 +1,10 @@
 import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { petStages } from '../data/pets'
+import InventoryScreen from './InventoryScreen'
 
 const HomeScreen = () => {
-    const { pet, feedPet, playWithPet, restPet, setScreen, currentAdventure } = useGameStore();
+    const { pet, feedPet, playWithPet, restPet, setScreen, currentAdventure, inventory } = useGameStore();
 
     const getStatColor = (value) => {
         if (value < 20) return "red";
@@ -36,6 +37,20 @@ const HomeScreen = () => {
                 <button onClick={restPet} disabled={isAdventuring}>
                 Rest
                 </button>
+
+                <hr />
+
+                <h2>Inventory</h2>
+                <p>Money: {inventory.money}</p>
+
+                <h3>Items</h3>
+                {inventory.items.length === 0 && <p>No items yet.</p>}
+
+                <ul>
+                    {inventory.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                    ))}
+                </ul>
 
                 <hr />
 

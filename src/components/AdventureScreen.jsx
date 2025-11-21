@@ -16,8 +16,8 @@ const AdventureScreen = () => {
         ? adventureLocations[currentAdventure.location]
         : null;
 
-    //pet can't be hungry or unhappy or both to go on an adventure
-    const canAdventure = pet.hunger > 0 && pet.happiness > 0;
+    //pet can't be too hungry or too tired or both to go on an adventure
+    const canAdventure = pet.hunger > 0 && pet.energy > 0;
 
     return (
         <div>
@@ -43,7 +43,7 @@ const AdventureScreen = () => {
 
                     {!canAdventure && (
                         <p style={{ color: "red" }}>
-                            Your pet is too unhappy or too hungry to go adventuring!
+                            Your pet is too tired or too hungry to go adventuring!
                         </p>
                     )}
 

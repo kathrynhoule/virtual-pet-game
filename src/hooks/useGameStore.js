@@ -56,7 +56,7 @@ const useGameStore = create((set) => ({
     //adventures
     startAdventure: (location = "Forest") =>
         set((state) => {
-            if (state.pet.hunger <= 0 || state.pet.happiness <= 0) {
+            if (state.pet.hunger <= 0 || state.pet.energy <= 0) {
                 return state;
             }
 

@@ -7,6 +7,7 @@ import useAdventureTimer from './hooks/useAdventureTimer'
 import { GameProvider } from './context/GameContext'
 import ShopScreen from './components/ShopScreen'
 import StartScreen from './components/StartScreen'
+import RoomSelectScreen from './components/RoomSelectScreen'
 
 const App = () => {
     const SCREENS = {
@@ -14,6 +15,7 @@ const App = () => {
         adventure: AdventureScreen,
         shop: ShopScreen,
         start: StartScreen,
+        roomSelect: RoomSelectScreen,
     };
 
     useStatDecay();

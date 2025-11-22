@@ -10,6 +10,7 @@ import { starterRoomOptions } from '../data/rooms'
 const HomeScreen = () => {
     const {
         pet,
+        room,
         feedPet,
         playWithPet,
         restPet,
@@ -18,13 +19,13 @@ const HomeScreen = () => {
         inventory
     } = useGameStore();
 
+    const currentRoom = starterRoomOptions[room] ?? starterRoomOptions.Old;
+
     const getStatColor = (value) => {
         if (value < 20) return "red";
         if (value < 40) return "goldenrod";
         return "black";
     };
-
-    const currentRoom = starterRoomOptions.Old;
 
     const isAdventuring = currentAdventure !== null;
 

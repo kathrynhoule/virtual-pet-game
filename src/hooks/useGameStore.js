@@ -12,6 +12,8 @@ const useGameStore = create((set) => ({
 
     pet: null,
 
+    room: null,
+
     inventory: defaultInventory,
 
     setScreen: (screen) => set({ currentScreen: screen }),
@@ -27,8 +29,15 @@ const useGameStore = create((set) => ({
                     adventuresCompleted: 0,
                     adventureHistory: [],
                 },
-                currentScreen: "home",
+                currentScreen: "roomSelect",
         })),
+
+    chooseStarterRoom: (roomId) =>
+        set(() => ({
+            room: roomId,
+            currentScreen: "home",
+    })),
+
     currentAdventure: null,
 
     decayRates: {

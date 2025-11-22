@@ -2,9 +2,9 @@
 //may change weights later for balancing purposes
 export const difficultyWeights = {
     easy: 6,
-    medium: 3,
-    hard: 1,
-    extreme: 0.3,
+    medium: 4,
+    hard: 0.9,
+    extreme: 0.1,
 };
 
 //picks pet options from pool based on difficulty weights

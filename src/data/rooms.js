@@ -1,5 +1,9 @@
-import oldRoomImg from '../assets/locations/old-room.png'
-import pinkRoomImg from '../assets/locations/pink-room.png'
+import oldRoomImg from '../assets/locations/rooms/old-room.png'
+import pinkRoomImg from '../assets/locations/rooms/pink-room.png'
+import simpleRoomImg from '../assets/locations/rooms/simple-room.png'
+import cozyRoomImg from '../assets/locations/rooms/cozy-room.png'
+import coolRoomImg from '../assets/locations/rooms/cool-room.png'
+import strangeRoomImg from '../assets/locations/rooms/strange-room.png'
 
 //will add 2 more started room options later
 //need to make an intro with room selection first
@@ -10,8 +14,24 @@ export const starterRoomOptions = {
         name: 'Old Room',
         image: oldRoomImg,
     },
-    Pink: {
-        name: 'Pink Room',
+    Cute: {
+        name: 'Cute Room',
         image: pinkRoomImg,
     },
+    Simple: {
+        name: 'Simple Room',
+        image: simpleRoomImg,
+    },
+    Cozy: {
+        name: 'Cozy Room',
+        image: cozyRoomImg,
+    },
+    Cool: {
+        name: 'Cool Room',
+        image: coolRoomImg,
+    },
+    Strange: {
+        name: 'Strange Room',
+        image: strangeRoomImg,
+    }
 };

@@ -8,15 +8,21 @@ import { starterRoomOptions } from '../data/rooms'
 //will fix later
 
 const HomeScreen = () => {
-    const { pet, feedPet, playWithPet, restPet, setScreen, currentAdventure, inventory } = useGameStore();
+    const {
+        pet,
+        feedPet,
+        playWithPet,
+        restPet,
+        setScreen,
+        currentAdventure,
+        inventory
+    } = useGameStore();
 
     const getStatColor = (value) => {
         if (value < 20) return "red";
         if (value < 40) return "goldenrod";
         return "black";
     };
-
-    const currentPetData = petStages[pet.stage];
 
     const currentRoom = starterRoomOptions.Old;
 
@@ -25,15 +31,15 @@ const HomeScreen = () => {
     return (
             <div>
                 <img src={currentRoom.image} alt={currentRoom.name} width={150} />
-                <h2>{currentPetData.name}</h2>
-                <img src={currentPetData.image} alt={currentPetData.name} width={150} />
+                
+                <h2>{pet.name}</h2>
+                <img src={pet.image} alt={pet.name} width={150} />
 
                 <h2>Pet Stats</h2>
                 <p style={{ color: getStatColor(pet.hunger) }}>Hunger: {pet.hunger}</p>
                 <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>
                 <p style={{ color: getStatColor(pet.energy) }}>Energy: {pet.energy}</p>
                 <p>Adventures Completed: {pet.adventuresCompleted}</p>
-                <p>Pet Stage: {pet.stage}</p>
 
                 <button onClick={feedPet} disabled={isAdventuring}>
                 Feed

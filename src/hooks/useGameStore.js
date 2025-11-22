@@ -8,20 +8,27 @@ import { defaultInventory } from '../data/inventory'
 //i'll do something about that later
 
 const useGameStore = create((set) => ({
-    currentScreen: "home",
+    currentScreen: "start",
+
+    pet: null,
 
     inventory: defaultInventory,
 
     setScreen: (screen) => set({ currentScreen: screen }),
 
-    pet: {
-        stage: 0,
-        hunger: 100,
-        happiness: 100,
-        energy: 100,
-        adventuresCompleted: 0,
-        adventureHistory: [],
-    },
+    chooseStarterPet: (petInfo) =>
+            set(() => ({
+                pet: {
+                    ...petInfo,
+                    stage: 0,
+                    hunger: 100,
+                    happiness: 100,
+                    energy: 100,
+                    adventuresCompleted: 0,
+                    adventureHistory: [],
+                },
+                currentScreen: "home",
+        })),
     currentAdventure: null,
 
     decayRates: {

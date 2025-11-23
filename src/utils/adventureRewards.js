@@ -22,7 +22,7 @@ function generateAdventureRewards(locationData) {
     const items = locationData.rewards.items;
     for (const item of items) {
         if (Math.random() < item.chance) {
-            results.items.push(item.name);
+            results.items.push(item.id);
         }
     }
 

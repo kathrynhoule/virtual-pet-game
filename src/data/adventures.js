@@ -15,6 +15,7 @@ import volcanoImg from '../assets/locations/Volcano.png';
 //might add more items
 //might add events for the locations as well
 
+//item details are in items.js now
 export const adventureLocations = {
     Forest: {
         name: 'Forest',
@@ -24,8 +25,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 2, max: 9, chance: 1.0 },
             items: [
-                { name: 'Mushroom', chance: 0.5 },
-                { name: 'Magic Leaf', chance: 0.1 },
+                { id: 'mushroom', chance: 0.5 },
+                { id: 'magicLeaf', chance: 0.1 },
             ],
         },
     },
@@ -37,8 +38,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 10, max: 20, chance: 0.8 },
             items: [
-                { name: 'Bat Wing', chance: 0.3 },
-                { name: 'Sparkly Gem', chance: 0.1 },
+                { id: 'batWing', chance: 0.3 },
+                { id: 'sparklyGem', chance: 0.1 },
             ],
         },
     },
@@ -50,9 +51,9 @@ export const adventureLocations = {
         rewards: {
             money: { min: 5, max: 20, chance: 0.6 },
             items: [
-                { name: 'Shell', chance: 0.8 },
-                { name: 'Fish', chance: 0.3 },
-                { name: 'Little Guy', chance: 0.05 },
+                { id: 'shell', chance: 0.8 },
+                { id: 'fish', chance: 0.3 },
+                { id: 'littleGuy', chance: 0.05 },
             ],
         },
     },
@@ -64,8 +65,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 20, max: 40, chance: 0.9 },
             items: [
-                { name: 'Punchcard Sticker', chance: 0.4 },
-                { name: 'Ring', chance: 0.05 },
+                { id: 'punchcardSticker', chance: 0.4 },
+                { id: 'ring', chance: 0.05 },
             ],
         },
     },
@@ -77,8 +78,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 10, max: 40, chance: 0.6 },
             items: [
-                { name: 'Fruit', chance: 0.4 },
-                { name: 'Fossil', chance: 0.05 },
+                { id: 'fruit', chance: 0.4 },
+                { id: 'fossil', chance: 0.05 },
             ],
         },
     },
@@ -90,8 +91,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 1, max: 10, chance: 0.7 },
             items: [
-                { name: 'Unused Needle', chance: 0.5 },
-                { name: 'Blood Sample', chance: 0.1 },
+                { id: 'unusedNeedle', chance: 0.5 },
+                { id: 'bloodSample', chance: 0.1 },
             ],
         },
     },
@@ -103,8 +104,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 10, max: 25, chance: 0.7 },
             items: [
-                { name: 'Ribbon', chance: 0.5 },
-                { name: 'Brush', chance: 0.3 },
+                { id: 'ribbon', chance: 0.5 },
+                { id: 'brush', chance: 0.3 },
             ],
         },
     },
@@ -116,9 +117,9 @@ export const adventureLocations = {
         rewards: {
             money: { min: 20, max: 50, chance: 0.5 },
             items: [
-                { name: 'Seaweed', chance: 1.0 },
-                { name: 'Strange Tooth', chance: 0.05 },
-                { name: 'Lost Treasure', chance: 0.01 },
+                { id: 'seaweed', chance: 1.0 },
+                { id: 'strangeTooth', chance: 0.05 },
+                { id: 'lostTreasure', chance: 0.01 },
             ],
         },
     },
@@ -130,8 +131,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 2, max: 8, chance: 0.5 },
             items: [
-                { name: 'Ice Crystal', chance: 0.3 },
-                { name: 'Frozen Soul', chance: 0.05 },
+                { id: 'iceCrystal', chance: 0.3 },
+                { id: 'frozenSoul', chance: 0.05 },
             ],
         },
     },
@@ -143,8 +144,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 2, max: 8, chance: 0.4 },
             items: [
-                { name: 'Star Piece', chance: 0.1 },
-                { name: 'Ungood Egg', chance: 0.01 },
+                { id: 'starPiece', chance: 0.1 },
+                { id: 'ungoodEgg', chance: 0.01 },
             ],
         },
     },
@@ -156,8 +157,8 @@ export const adventureLocations = {
         rewards: {
             money: { min: 5, max: 25, chance: 0.9 },
             items: [
-                { name: 'Maiden Remains', chance: 0.1 },
-                { name: 'Dragon Bones', chance: 0.03 },
+                { id: 'maidenRemains', chance: 0.1 },
+                { id: 'dragonBones', chance: 0.03 },
             ],
         },
     },

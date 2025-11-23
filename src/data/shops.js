@@ -2,23 +2,24 @@
 //don't feel like it right now
 //also need a few more shops later on
 
+//moved item data to items.js
 export const shopLocations = {
     General: {
         name: 'General Shop',
         unlockAt: 3,
         inventory: [
-                { name: 'Pet Food', description: 'Basic pet food. Better than going hungry', price: 30 },
-                { name: 'Secondhand Ball', description: 'An old ball. Certainly wont last long.',  price: 10 },
-                { name: 'Shampoo', description: 'Will get your pet clean.',  price: 40 },
-            ],
+            { id: 'petFood' },
+            { id: 'secondhandBall' },
+            { id: 'shampoo' },
+        ],
     },
     Toy: {
         name: 'Toy Shop',
         unlockAt: 10,
         inventory: [
-                { name: 'Squeeky Toy', description: 'Fun to play with, but easy to tear.',  price: 30 },
-                { name: 'Large Plush', description: 'Woah that is huge and adorable! Sure to make a pet happy.',  price: 150 },
-                { name: 'Scratch Pad', description: 'Good for pets with claws and ones who like to roughhouse.',  price: 70 },
+            { id: 'squeakyToy' },
+            { id: 'largePlush' },
+            { id: 'scratchPad' },
         ],
     },
-}
+};

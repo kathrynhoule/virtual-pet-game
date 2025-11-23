@@ -2,6 +2,7 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { shopLocations } from '../data/shops'
 import { useState } from 'react'
+import { items } from '../data/items'
 
 //will add purchasing logic later
 //don't feel like it right now
@@ -58,11 +59,19 @@ const ShopScreen = () => {
                     <h3>{shopData.name}</h3>
 
                     <ul>
-                        {shopData.inventory.map((item, i) => (
-                            <li key={i}>
-                                <strong>{item.name}</strong> – {item.description} (₲{item.price})
-                            </li>
-                        ))}
+                        {shopData.inventory.map((entry, i) => {
+                            const itemData = items[entry.id];
+
+                            if (!itemData) {
+                                return <li key={i}>⚠ Unknown item: {entry.id}</li>;
+                            }
+
+                            return (
+                                <li key={i}>
+                                    <strong>{itemData.name}</strong> – {itemData.description} (₲{itemData.price})
+                                </li>
+                            );
+                        })}
                     </ul>
 
                     <button onClick={() => setSelectedShop(null)}>

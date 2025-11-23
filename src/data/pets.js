@@ -1,3 +1,5 @@
+//pretty sure i can remove these now but i would prefer to replace the evolution logic first just to be safe
+//can't remember if i'm still using the old evolution logic or not
 import basePetImg from '../assets/pets/base-sprite.png'
 import dayPetImg from '../assets/pets/day-sprite.png'
 import nightPetImg from '../assets/pets/night-sprite.png'
@@ -125,6 +127,8 @@ export const starterPets = [
 ];
 
 
+//old pet stage data
+//will remove once i know for sure i'm not using it anymore
 export const petStages = {
     0: {
         name: 'Base Pet',

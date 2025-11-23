@@ -6,6 +6,7 @@ import { defaultInventory } from '../data/inventory'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
+//also need to change the pet evolution logic later on
 
 const useGameStore = create((set) => ({
     currentScreen: "start",

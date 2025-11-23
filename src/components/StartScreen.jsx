@@ -5,6 +5,9 @@ import { difficultyWeights } from '../utils/pickWeightedRandom'
 import { pickWeightedRandom } from '../utils/pickWeightedRandom'
 import { useMemo } from 'react'
 
+//for choosing starter pet at the beginning of the game
+//probably should have called this something else
+
 const StartScreen = () => {
     const { chooseStarterPet } = useGameStore();
 

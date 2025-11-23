@@ -2,6 +2,8 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { starterRoomOptions } from '../data/rooms'
 
+//for choosing room at the start of the game
+
 const RoomSelectScreen = () => {
     const { chooseStarterRoom } = useGameStore();
 

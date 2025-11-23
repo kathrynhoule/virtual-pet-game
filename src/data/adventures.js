@@ -16,6 +16,7 @@ import volcanoImg from '../assets/locations/Volcano.png';
 //might add events for the locations as well
 
 //item details are in items.js now
+
 export const adventureLocations = {
     Forest: {
         name: 'Forest',

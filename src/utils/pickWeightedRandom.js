@@ -1,5 +1,6 @@
 //weights for different pet difficulties to show up on pet selection screen
-//may change weights later for balancing purposes
+//currently i like how the weights are set, but we'll see
+
 export const difficultyWeights = {
     easy: 6,
     medium: 4,

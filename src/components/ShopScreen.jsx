@@ -4,9 +4,7 @@ import { shopLocations } from '../data/shops'
 import { useState } from 'react'
 import { items } from '../data/items'
 
-//will add purchasing logic later
-//don't feel like it right now
-
+//will add purchasing and selling logic later
 //this also looks like hell right now
 //i don't want to change it right now though
 //so it is what it is for the time being

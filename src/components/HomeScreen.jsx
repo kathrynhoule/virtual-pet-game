@@ -3,7 +3,7 @@ import useGameStore from '../hooks/useGameStore'
 import { petStages } from '../data/pets'
 import InventoryScreen from './InventoryScreen'
 import { starterRoomOptions } from '../data/rooms'
-import { items } from '../data/items'
+import { items as itemDB } from "../data/items";
 
 //this is a little hell to look at right now
 //will fix later
@@ -62,11 +62,11 @@ const HomeScreen = () => {
                 {inventory.items.length === 0 && <p>No items yet.</p>}
 
                 <ul>
-                    {inventory.items.map((id, i) => {
-                        const itemData = items[id];
+                    {Object.entries(inventory.items).map(([id, qty]) => {
+                        const itemData = itemDB[id];
                         return (
-                            <li key={i}>
-                                {itemData ? itemData.name : `Unknown item (${id})`}
+                            <li key={id}>
+                                {itemData ? itemData.name : `Unknown (${id})`} ×{qty}
                             </li>
                         );
                     })}

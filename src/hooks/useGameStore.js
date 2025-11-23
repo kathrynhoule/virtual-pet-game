@@ -115,7 +115,10 @@ const useGameStore = create((set) => ({
             const updatedInventory = {
                 ...state.inventory,
                 money: state.inventory.money + rewards.money,
-                items: [...state.inventory.items, ...rewards.items],
+                items: rewards.items.reduce((acc, itemId) => {
+                    acc[itemId] = (acc[itemId] || 0) + 1;
+                    return acc;
+                }, { ...state.inventory.items }),
             };
 
             //evolve pet if applicable

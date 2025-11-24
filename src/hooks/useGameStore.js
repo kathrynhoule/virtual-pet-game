@@ -3,6 +3,7 @@ import { determinePetStage } from '../utils/petEvoRules'
 import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
+import { items } from '../data/items'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -133,6 +134,27 @@ const useGameStore = create((set) => ({
                 inventory: updatedInventory,
             };
         }),
+    
+    purchaseItem: (itemId) =>
+    set((state) => {
+        const item = items[itemId];
+        if (!item) return state;
+
+        if (state.inventory.money < item.buyPrice) {
+            return state;
+        }
+
+        return {
+            inventory: {
+                ...state.inventory,
+                money: state.inventory.money - item.buyPrice,
+                items: {
+                    ...state.inventory.items,
+                    [itemId]: (state.inventory.items[itemId] || 0) + 1,
+                }
+            },
+        };
+    }),
 }));
 
 export default useGameStore;

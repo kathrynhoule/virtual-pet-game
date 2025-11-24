@@ -66,7 +66,10 @@ const ShopScreen = () => {
 
                             return (
                                 <li key={i}>
-                                    <strong>{itemData.name}</strong> – {itemData.description} (₲{itemData.price})
+                                    <strong>{itemData.name}</strong> – {itemData.description} (₲{itemData.buyPrice})
+                                    <button onClick={() => purchaseItem(entry.id)}>
+                                        Buy
+                                    </button>
                                 </li>
                             );
                         })}

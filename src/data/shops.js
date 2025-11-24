@@ -3,6 +3,7 @@
 //also need a few more shops later on
 
 //moved item data to items.js
+
 export const shopLocations = {
     General: {
         name: 'General Shop',
@@ -12,6 +13,7 @@ export const shopLocations = {
             { id: 'secondhandBall' },
             { id: 'shampoo' },
         ],
+        buysCategories: [ "nature", "animal", "treasure", "collectible", "petcare", ],
     },
     Toy: {
         name: 'Toy Shop',
@@ -21,5 +23,6 @@ export const shopLocations = {
             { id: 'largePlush' },
             { id: 'scratchPad' },
         ],
+        buysCategories: [ "nature", "animal", "treasure", "collectible", "petcare", ],
     },
 };

@@ -3,7 +3,6 @@ import React from 'react'
 //displays inventory
 //i gotta do something else with this later
 //will make it not directly on the home screen
-//also need to display multiples of the same item in one line so inventory doesn't end up a million lines long like it currently does
 
 const InventoryScreen = ({ inventory }) => {
     return (
@@ -16,8 +15,10 @@ const InventoryScreen = ({ inventory }) => {
             
             {inventory.items.length === 0 && <p>No items yet.</p>}
             <ul>
-                {inventory.items.map((item, i) => (
-                    <li key={i}>{item}</li>
+                {Object.entries(inventory.items).map(([id, qty]) => (
+                    <li key={id}>
+                    {id} × {qty}
+                    </li>
                 ))}
             </ul>
         </div>

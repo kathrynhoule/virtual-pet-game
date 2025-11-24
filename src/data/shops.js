@@ -2,7 +2,7 @@
 //don't feel like it right now
 //also need a few more shops later on
 
-//moved item data to items.js
+//item data is stored in items.js
 
 export const shopLocations = {
     General: {

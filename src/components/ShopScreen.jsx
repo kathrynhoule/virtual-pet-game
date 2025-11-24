@@ -4,10 +4,8 @@ import { shopLocations } from '../data/shops'
 import { useState } from 'react'
 import { items } from '../data/items'
 
-//will add purchasing and selling logic later
-//this also looks like hell right now
-//i don't want to change it right now though
-//so it is what it is for the time being
+//this also looks like hell
+//but i don't want to change it right now
 
 const ShopScreen = () => {
     const { pet, inventory, setScreen, purchaseItem, sellItem } = useGameStore();

@@ -1,7 +1,6 @@
 //all items
 //should this be organized more? yah maybe
-//also need to differentiate between buy and sell price
-//unless i just make it so shops buy back at half price or something
+//will update item descriptions later
 
 export const items = {
     //nature items

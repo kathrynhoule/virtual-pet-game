@@ -10,7 +10,9 @@ import { items } from '../data/items'
 //so it is what it is for the time being
 
 const ShopScreen = () => {
-    const { pet, inventory, setScreen, purchaseItem } = useGameStore();
+    const { pet, inventory, setScreen, purchaseItem, sellItem } = useGameStore();
+
+    const [mode, setMode] = useState("buy");
 
     const [selectedShop, setSelectedShop] = useState(null);
     
@@ -56,24 +58,62 @@ const ShopScreen = () => {
                 <div>
                     <h3>{shopData.name}</h3>
 
-                    <ul>
-                        {shopData.inventory.map((entry, i) => {
-                            const itemData = items[entry.id];
+                    <div>
+                    <button onClick={() => setMode("buy")} disabled={mode === "buy"}>
+                        Buy
+                    </button>
+                    <button onClick={() => setMode("sell")} disabled={mode === "sell"}>
+                        Sell
+                    </button>
+                    </div>
 
-                            if (!itemData) {
-                                return <li key={i}>⚠ Unknown item: {entry.id}</li>;
-                            }
+                    {mode === "buy" && (
+                        <ul>
+                            {shopData.inventory.map((entry, i) => {
+                            const itemData = items[entry.id];
+                            if (!itemData) return <li key={i}>⚠ Unknown item: {entry.id}</li>;
 
                             return (
                                 <li key={i}>
-                                    <strong>{itemData.name}</strong> – {itemData.description} (₲{itemData.buyPrice})
-                                    <button onClick={() => purchaseItem(entry.id)}>
-                                        Buy
-                                    </button>
+                                <strong>{itemData.name}</strong> – {itemData.description} (₲{itemData.buyPrice})
+                                <button onClick={() => purchaseItem(entry.id)}>
+                                    Buy
+                                </button>
                                 </li>
                             );
-                        })}
-                    </ul>
+                            })}
+                        </ul>
+                    )}
+
+                    {mode === "sell" && (
+                        <ul>
+                            {Object.keys(inventory.items).map((itemId) => {
+                            const itemData = items[itemId];
+                            if (!itemData) return null;
+
+                            const canShopBuy =
+                                shopData.buysCategories.includes(itemData.category);
+
+                            return (
+                                <li key={itemId}>
+                                <strong>{itemData.name}</strong> — You have {inventory.items[itemId]}
+
+                                {canShopBuy ? (
+                                    <>
+                                    {" "}
+                                    (Sell for ₲{itemData.sellPrice})
+                                    <button onClick={() => sellItem(itemId)}>
+                                        Sell
+                                    </button>
+                                    </>
+                                ) : (
+                                    <em> (This shop doesn’t buy this item)</em>
+                                )}
+                                </li>
+                            );
+                            })}
+                        </ul>
+                    )}
 
                     <button onClick={() => setSelectedShop(null)}>
                         Back to Shop List

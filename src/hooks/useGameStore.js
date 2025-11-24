@@ -155,6 +155,33 @@ const useGameStore = create((set) => ({
             },
         };
     }),
+
+    sellItem: (itemId) =>
+        set((state) => {
+            const item = items[itemId];
+            if (!item) return state;
+
+            if (!state.inventory.items[itemId]) {
+            return state;
+            }
+
+            const updatedItemCount = state.inventory.items[itemId] - 1;
+
+            const updatedItems = { ...state.inventory.items };
+            if (updatedItemCount <= 0) {
+            delete updatedItems[itemId];
+            } else {
+            updatedItems[itemId] = updatedItemCount;
+            }
+
+            return {
+            inventory: {
+                ...state.inventory,
+                money: state.inventory.money + item.sellPrice,
+                items: updatedItems,
+            },
+        };
+    }),
 }));
 
 export default useGameStore;

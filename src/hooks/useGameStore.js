@@ -4,6 +4,7 @@ import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
 import { items } from '../data/items'
+import { starterRoomOptions } from '../data/rooms'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -38,10 +39,26 @@ const useGameStore = create((set) => ({
         })),
 
     chooseStarterRoom: (roomId) =>
-        set(() => ({
-            room: roomId,
-            currentScreen: "home",
-    })),
+        set((state) => {
+            const roomData = starterRoomOptions[roomId];
+            const bonuses = roomData?.statBonuses || {};
+
+            const updatedPet = {
+                ...state.pet,
+                ...Object.fromEntries(
+                    Object.entries(bonuses).map(([stat, amount]) => [
+                        stat,
+                        (state.pet[stat] || 0) + amount,
+                    ])
+                ),
+            };
+
+            return {
+                pet: updatedPet,
+                room: roomId,
+                currentScreen: "home",
+            };
+        }),
 
     currentAdventure: null,
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { petEvolutions } from '../data/petEvos';
 
-//needs a major overhaul
+//checks for eligible evolutions based on pet stats
 
 export const getEligibleEvolutions = (pet) => {
     const evolutions = petEvolutions[pet.id];

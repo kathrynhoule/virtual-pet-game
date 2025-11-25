@@ -1,3 +1,5 @@
+//i don't think i've actually used this for anything yet
+//but i will probably eventually
 
 export const eventLocations = {
     EvolutionLab: {

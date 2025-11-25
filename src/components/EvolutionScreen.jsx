@@ -2,6 +2,9 @@ import React from 'react';
 import useGameStore from '../hooks/useGameStore';
 import { getEligibleEvolutions } from '../utils/petEvoRules';
 
+//i gotta update this later
+//maybe make it so that it goes on the lab screen so i can add some more stuff to the lab
+
 const EvolutionScreen = () => {
     const pet = useGameStore((state) => state.pet);
     const evolvePet = useGameStore((state) => state.evolvePet);

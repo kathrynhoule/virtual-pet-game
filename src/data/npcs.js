@@ -1,3 +1,7 @@
+//NPCs with placeholder images and dialogues
+//more NPCs and dialogues will be added later
+//will also add images later
+//will also actually do something with this later
 
 export const NPCs = {
     Shopkeeper: {

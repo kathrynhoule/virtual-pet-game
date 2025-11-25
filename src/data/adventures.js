@@ -12,6 +12,7 @@ import volcanoImg from '../assets/locations/Volcano.png';
 
 //data for adventure locations
 //might add more items and details later
+//will likely make adventures add stat points to pets
 
 //item details are stored in items.js
 

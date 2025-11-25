@@ -5,9 +5,8 @@ import cozyRoomImg from '../assets/locations/rooms/cozy-room.png'
 import coolRoomImg from '../assets/locations/rooms/cool-room.png'
 import strangeRoomImg from '../assets/locations/rooms/strange-room.png'
 
-//might add further data so that rooms correspond to different styles later
-//might affect pet happiness or something
-//for now just images
+//data for starter room options and their images
+//just placeholder images right now
 
 export const starterRoomOptions = {
     Old: {

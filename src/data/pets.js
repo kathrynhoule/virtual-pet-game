@@ -16,10 +16,7 @@ import horsePetImg from '../assets/pets/horse-pet.png'
 import guyPetImg from '../assets/pets/guy-pet.png'
 import galPetImg from '../assets/pets/gal-pet.png'
 
-//data for pet stages and their images
-//this is going to need a lot of expansion later as more base pets and evolutions are added
-//will also need to add more evo rules later
-//that's for future me to worry about
+//data for starter pets and their images
 
 export const starterPets = [
     {

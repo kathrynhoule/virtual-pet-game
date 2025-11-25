@@ -1,31 +1,15 @@
 import React from 'react'
+import { petEvolutions } from '../data/petEvos';
 
 //needs a major overhaul
 
-export const determinePetStage = (pet) => {
-    let newStage = pet.stage;
+export const getEligibleEvolutions = (pet) => {
+    const evolutions = petEvolutions[pet.id];
+    if (!evolutions) return [];
 
-    //counts daytime adventures (6AM - 6PM)
-    const dayAdventures = pet.adventureHistory.filter(entry => {
-        const hour = new Date(entry.startTime).getHours();
-        return hour >= 6 && hour < 18;
-    }).length;
-
-    //counts nighttime adventures (6PM - 6AM)
-    const nightAdventures = pet.adventureHistory.filter(entry => {
-        const hour = new Date(entry.startTime).getHours();
-        return hour >= 18 || hour < 6;
-    }).length;
-
-    //nighttime evo has priority
-    if (nightAdventures >= 3 && newStage < 2) {
-        newStage = 2; //night version
-    } 
-    else if (dayAdventures >= 3 && newStage < 1) {
-        newStage = 1; //dayversion
-    }
-
-    //will add more evo rules here later
-
-    return newStage;
+    return evolutions.filter((evo) =>
+        Object.entries(evo.requirements).every(
+            ([stat, needed]) => pet[stat] >= needed
+        )
+    );
 };

@@ -8,6 +8,7 @@ import { GameProvider } from './context/GameContext'
 import ShopScreen from './components/ShopScreen'
 import StartScreen from './components/StartScreen'
 import RoomSelectScreen from './components/RoomSelectScreen'
+import EvolutionScreen from './components/EvolutionScreen'
 
 const App = () => {
     const SCREENS = {
@@ -16,6 +17,7 @@ const App = () => {
         shop: ShopScreen,
         start: StartScreen,
         roomSelect: RoomSelectScreen,
+        evolution: EvolutionScreen,
     };
 
     useStatDecay();

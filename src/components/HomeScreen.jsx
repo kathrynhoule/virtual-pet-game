@@ -1,6 +1,5 @@
 import React from 'react'
 import useGameStore from '../hooks/useGameStore'
-import { petStages } from '../data/pets'
 import InventoryScreen from './InventoryScreen'
 import { starterRoomOptions } from '../data/rooms'
 import { items as itemDB } from "../data/items";
@@ -82,6 +81,10 @@ const HomeScreen = () => {
 
                 <button onClick={() => setScreen("shop")}>
                     Go to Shops
+                </button>
+
+                <button onClick={() => setScreen("evolution")}>
+                    Go to Lab
                 </button>
             </div>
     );

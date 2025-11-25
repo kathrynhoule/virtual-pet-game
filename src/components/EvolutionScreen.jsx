@@ -1,0 +1,37 @@
+import React from 'react';
+import useGameStore from '../hooks/useGameStore';
+import { getEligibleEvolutions } from '../utils/petEvoRules';
+
+const EvolutionScreen = () => {
+    const pet = useGameStore((state) => state.pet);
+    const evolvePet = useGameStore((state) => state.evolvePet);
+
+    const { setScreen } = useGameStore();
+
+    const available = getEligibleEvolutions(pet);
+
+    if (!available.length) {
+        return <div>
+            <p>No evolutions available yet.</p>
+        <br /><br />
+            <button onClick={() => setScreen("home")}>Back Home</button>
+        </div>;
+    }
+
+    return (
+        <div>
+            <h2>Choose Your Evolution</h2>
+
+            {available.map((evo) => (
+                <button key={evo.id} onClick={() => evolvePet(evo)}>
+                    {evo.name}
+                </button>
+            ))}
+
+            <br /><br />
+            <button onClick={() => setScreen("home")}>Back Home</button>
+        </div>
+    );
+};
+
+export default EvolutionScreen;

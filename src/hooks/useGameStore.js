@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { determinePetStage } from '../utils/petEvoRules'
+import { getEligibleEvolutions } from '../utils/petEvoRules'
 import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
@@ -30,6 +30,9 @@ const useGameStore = create((set) => ({
                     energy: 100,
                     adventuresCompleted: 0,
                     adventureHistory: [],
+                    weird: 0,
+                    eerie: 0,
+                    style: 0,
                 },
                 currentScreen: "roomSelect",
         })),
@@ -121,18 +124,6 @@ const useGameStore = create((set) => ({
                     return acc;
                 }, { ...state.inventory.items }),
             };
-
-            //evolve pet if applicable
-            const newStage = determinePetStage(updatedPet);
-
-            return {
-                currentAdventure: null,
-                pet: {
-                    ...updatedPet,
-                    stage: newStage,
-                },
-                inventory: updatedInventory,
-            };
         }),
     
     purchaseItem: (itemId) =>
@@ -182,6 +173,17 @@ const useGameStore = create((set) => ({
             },
         };
     }),
+
+    evolvePet: (evo) =>
+    set((state) => ({
+        pet: {
+            ...state.pet,
+            id: evo.id,
+            name: evo.name,
+            image: evo.image,
+            stage: state.pet.stage + 1,
+        },
+    })),
 }));
 
 export default useGameStore;

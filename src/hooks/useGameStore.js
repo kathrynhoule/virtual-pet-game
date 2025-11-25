@@ -97,16 +97,19 @@ const useGameStore = create((set) => ({
     //adventures
     startAdventure: (location = "Forest") =>
         set((state) => {
+            const locationData = adventureLocations[location];
+            const duration = locationData.duration ?? 30;
+
             if (state.pet.hunger <= 0 || state.pet.energy <= 0) {
                 return state;
             }
 
             return {
                 currentAdventure: {
+                    location: location,
                     startTime: Date.now(),
-                    endTime: Date.now() + 10000,
-                    location,
-                },
+                    endTime: Date.now() + duration * 1000,
+                }
             };
         }),
 
@@ -116,9 +119,9 @@ const useGameStore = create((set) => ({
             const locationData = adventureLocations[currentLocation];
 
             const newEntry = {
-            startTime: state.currentAdventure?.startTime || Date.now() - 10000,
-            endTime: Date.now(),
-            location: currentLocation,
+                startTime: state.currentAdventure?.startTime || Date.now() - 10000,
+                endTime: Date.now(),
+                location: currentLocation,
             };
 
             //update pet stats
@@ -140,6 +143,12 @@ const useGameStore = create((set) => ({
                     acc[itemId] = (acc[itemId] || 0) + 1;
                     return acc;
                 }, { ...state.inventory.items }),
+            };
+
+            return {
+                pet: updatedPet,
+                inventory: updatedInventory,
+                currentAdventure: null,
             };
         }),
     

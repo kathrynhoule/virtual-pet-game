@@ -30,6 +30,13 @@ const AdventureScreen = () => {
             Math.ceil((currentAdventure.endTime - Date.now()) / 1000)
         );
 
+    const formatDuration = (seconds) => {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+
+        return m > 0 ? `${m}m ${s}s` : `${s}s`;
+    };
+
     //UI
     const renderAdventureImage = (name, image) =>
         image ? <img src={image} width={200} alt={name} /> : null;
@@ -44,7 +51,7 @@ const AdventureScreen = () => {
                 <h3>{name}</h3>
                 {renderAdventureImage(name, image)}
                 <p>{description}</p>
-                <p>Returning in {getRemainingSeconds()} seconds...</p>
+                <p>Returning in {formatDuration(getRemainingSeconds())}...</p>
             </div>
         );
     };

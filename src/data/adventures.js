@@ -15,6 +15,7 @@ import volcanoImg from '../assets/locations/Volcano.png';
 //will likely make adventures add stat points to pets
 
 //item details are stored in items.js
+//durations for adventures are in seconds
 
 export const adventureLocations = {
     Forest: {
@@ -22,6 +23,7 @@ export const adventureLocations = {
         image: forestImg,
         description: 'Placeholder description',
         unlockAt: 0,
+        duration: 30, //0.5 minutes
         rewards: {
             money: { min: 2, max: 9, chance: 1.0 },
             items: [
@@ -35,6 +37,7 @@ export const adventureLocations = {
         image: caveImg,
         description: 'Placeholder description',
         unlockAt: 5,
+        duration: 90, //1.5 minutes
         rewards: {
             money: { min: 10, max: 20, chance: 0.8 },
             items: [
@@ -48,6 +51,7 @@ export const adventureLocations = {
         image: beachImg,
         description: 'Placeholder description',
         unlockAt: 5,
+        duration: 60, //1 minute
         rewards: {
             money: { min: 5, max: 20, chance: 0.6 },
             items: [
@@ -62,6 +66,7 @@ export const adventureLocations = {
         image: cityImg,
         description: 'Placeholder description',
         unlockAt: 20,
+        duration: 180, //3 minutes
         rewards: {
             money: { min: 20, max: 40, chance: 0.9 },
             items: [
@@ -75,6 +80,7 @@ export const adventureLocations = {
         image: desertImg,
         description: 'Placeholder description',
         unlockAt: 20,
+        duration: 180, //3 minutes
         rewards: {
             money: { min: 10, max: 40, chance: 0.6 },
             items: [
@@ -88,6 +94,7 @@ export const adventureLocations = {
         image: labImg,
         description: 'Placeholder description',
         unlockAt: 40,
+        duration: 240, //4 minutes
         rewards: {
             money: { min: 1, max: 10, chance: 0.7 },
             items: [
@@ -101,6 +108,7 @@ export const adventureLocations = {
         image: parlorImg,
         description: 'Placeholder description',
         unlockAt: 40,
+        duration: 300, //5 minutes
         rewards: {
             money: { min: 10, max: 25, chance: 0.7 },
             items: [
@@ -114,6 +122,7 @@ export const adventureLocations = {
         image: seafloorImg,
         description: 'Placeholder description',
         unlockAt: 75,
+        duration: 420, //7 minutes
         rewards: {
             money: { min: 20, max: 50, chance: 0.5 },
             items: [
@@ -128,6 +137,7 @@ export const adventureLocations = {
         image: snowImg,
         description: 'Placeholder description',
         unlockAt: 75,
+        duration: 300, //5 minutes
         rewards: {
             money: { min: 2, max: 8, chance: 0.5 },
             items: [
@@ -141,6 +151,7 @@ export const adventureLocations = {
         image: spaceImg,
         description: 'Placeholder description',
         unlockAt: 100,
+        duration: 600, //10 minutes
         rewards: {
             money: { min: 2, max: 8, chance: 0.4 },
             items: [
@@ -154,6 +165,7 @@ export const adventureLocations = {
         image: volcanoImg,
         description: 'Placeholder description',
         unlockAt: 100,
+        duration: 420, //7 minutes
         rewards: {
             money: { min: 5, max: 25, chance: 0.9 },
             items: [

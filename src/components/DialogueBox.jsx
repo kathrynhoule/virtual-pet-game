@@ -8,7 +8,7 @@ import { NPCs } from "../data/npcs";
 //so i want to leave it for now lol
 
 const DialogueBox = () => {
-    const { dialogue, dialogueIndex, nextDialogueLine, dialogueSpeaker } = useGameStore();
+    const { dialogue, dialogueIndex, nextDialogueLine, dialogueSpeaker, dialoguePersistent } = useGameStore();
 
     if (!dialogue) return null;
 
@@ -45,9 +45,11 @@ const DialogueBox = () => {
 
                 <p>{dialogue[dialogueIndex]}</p>
 
-                <button onClick={nextDialogueLine} style={{ marginTop: "0.5rem" }}>
-                    Continue
-                </button>
+                {!dialoguePersistent && (
+                    <button onClick={nextDialogueLine} style={{ marginTop: "0.5rem" }}>
+                        Continue
+                    </button>
+                )}
             </div>
         </div>
     );

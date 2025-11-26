@@ -21,8 +21,8 @@ const useGameStore = create((set) => ({
 
     dialogue: null,
     dialogueIndex: 0,
-
     dialogueSpeaker: null,
+    dialoguePersistent: false,
 
     setScreen: (screen) => set({ currentScreen: screen }),
 
@@ -31,17 +31,16 @@ const useGameStore = create((set) => ({
             dialogue: scene.lines,
             dialogueIndex: 0,
             dialogueSpeaker: scene.speaker || null,
+            dialoguePersistent: scene.persistent || false,
         })),
 
     nextDialogueLine: () =>
         set((state) => {
-            if (
-                !state.dialogue ||
-                state.dialogueIndex >= state.dialogue.length - 1
-            ) {
+            if (!state.dialogue || state.dialogueIndex >= state.dialogue.length - 1) {
                 return {
                     dialogue: null,
                     dialogueIndex: 0,
+                    dialoguePersistent: false,
                 };
             }
 

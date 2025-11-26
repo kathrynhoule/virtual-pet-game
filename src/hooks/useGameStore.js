@@ -22,12 +22,15 @@ const useGameStore = create((set) => ({
     dialogue: null,
     dialogueIndex: 0,
 
+    dialogueSpeaker: null,
+
     setScreen: (screen) => set({ currentScreen: screen }),
 
-    startDialogue: (lines) =>
+    startDialogue: (scene) =>
         set(() => ({
-            dialogue: lines,
+            dialogue: scene.lines,
             dialogueIndex: 0,
+            dialogueSpeaker: scene.speaker || null,
         })),
 
     nextDialogueLine: () =>

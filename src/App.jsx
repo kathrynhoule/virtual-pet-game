@@ -9,6 +9,7 @@ import ShopScreen from './components/ShopScreen'
 import StartScreen from './components/StartScreen'
 import RoomSelectScreen from './components/RoomSelectScreen'
 import EvolutionScreen from './components/EvolutionScreen'
+import { useEffect } from 'react'
 
 const App = () => {
     const SCREENS = {
@@ -25,6 +26,12 @@ const App = () => {
 
     const currentScreen = useGameStore((state) => state.currentScreen);
     const Current = SCREENS[currentScreen];
+
+    const startGameClock = useGameStore((state) => state.startGameClock);
+
+    useEffect(() => {
+        startGameClock();
+    }, []);
 
     return (
         <GameProvider>

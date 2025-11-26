@@ -10,7 +10,10 @@ import { NPCs } from '../data/npcs'
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
 
-const useGameStore = create((set) => ({
+const TICKS_PER_MINUTE = 1;
+const MINUTES_PER_DAY = 24 * 60;
+
+const useGameStore = create((set, get) => ({
     currentScreen: "start",
 
     pet: null,
@@ -23,6 +26,44 @@ const useGameStore = create((set) => ({
     dialogueIndex: 0,
     dialogueSpeaker: null,
     dialoguePersistent: false,
+
+    gameTime: 8 * 60,
+
+    startGameClock: () => {
+        if (get()._clockStarted) return;
+
+        const interval = setInterval(() => {
+            get().advanceTime();
+        }, 1000 * TICKS_PER_MINUTE);
+
+        set({ _clockStarted: true, _clockInterval: interval });
+    },
+
+    advanceTime: () =>
+        set((state) => {
+            let next = state.gameTime + 1;
+            if (next >= MINUTES_PER_DAY) next = 0;
+            return { gameTime: next };
+        }),
+
+    getFormattedTime: () => {
+        const time = get().gameTime;
+        const hours = Math.floor(time / 60);
+        const minutes = time % 60;
+        const hour12 = ((hours + 11) % 12) + 1;
+        const ampm = hours < 12 ? "AM" : "PM";
+        const padded = minutes.toString().padStart(2, "0");
+        return `${hour12}:${padded} ${ampm}`;
+    },
+
+    getTimeOfDay: () => {
+        const t = get().gameTime;
+        if (t < 6 * 60) return "night";
+        if (t < 12 * 60) return "morning";
+        if (t < 17 * 60) return "day";
+        if (t < 20 * 60) return "evening";
+        return "night";
+    },
 
     setScreen: (screen) => set({ currentScreen: screen }),
 

@@ -29,8 +29,13 @@ const HomeScreen = () => {
 
     const isAdventuring = currentAdventure !== null;
 
+    const { getFormattedTime, getTimeOfDay } = useGameStore();
+
     return (
             <div>
+                <h3>Time: {getFormattedTime()}</h3>
+                <p>It's currently: {getTimeOfDay()}</p>
+                
                 <img src={currentRoom.image} alt={currentRoom.name} width={150} />
                 
                 <h2>{pet.name}</h2>

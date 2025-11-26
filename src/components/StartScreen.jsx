@@ -4,31 +4,42 @@ import { starterPets } from '../data/pets'
 import { difficultyWeights } from '../utils/pickWeightedRandom'
 import { pickWeightedRandom } from '../utils/pickWeightedRandom'
 import { useMemo } from 'react'
+import { NPCs } from '../data/npcs'
+import DialogueBox from './DialogueBox'
+import { useEffect } from 'react'
 
 //for choosing starter pet at the beginning of the game
 //probably should have called this something else
 
 const StartScreen = () => {
-    const { chooseStarterPet } = useGameStore();
+    const { chooseStarterPet, startDialogue, dialogue } = useGameStore();
 
     const randomStarters = useMemo(() => {
         return pickWeightedRandom(starterPets, 3, difficultyWeights);
     }, []);
 
+    useEffect(() => {
+        startDialogue(NPCs.Shopkeeper.scenes.intro);
+    }, []);
+
     return (
         <div>
-            <h2>Choose Your Pet:</h2>
+            <DialogueBox />
 
-            {randomStarters.map(pet => (
-            <div key={pet.id} style={{ marginBottom: "1rem" }}>
-                <h3>{pet.name}</h3>
-                <img src={pet.image} width={120} alt={pet.name} />
+            {!dialogue && (
+            <>
+                {randomStarters.map(pet => (
+                    <div key={pet.id} style={{ marginBottom: "1rem" }}>
+                        <h3>{pet.name}</h3>
+                        <img src={pet.image} width={120} alt={pet.name} />
 
-                <button onClick={() => chooseStarterPet(pet)}>
-                Select {pet.name}
-                </button>
-            </div>
-            ))}
+                        <button onClick={() => chooseStarterPet(pet)}>
+                        Select {pet.name}
+                        </button>
+                    </div>
+                ))}
+            </>
+            )}
         </div>
     );
 }

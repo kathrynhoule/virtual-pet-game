@@ -5,10 +5,10 @@ import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
 import { items } from '../data/items'
 import { starterRoomOptions } from '../data/rooms'
+import { NPCs } from '../data/npcs'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
-//also need to change the pet evolution logic later on
 
 const useGameStore = create((set) => ({
     currentScreen: "start",
@@ -19,23 +19,47 @@ const useGameStore = create((set) => ({
 
     inventory: defaultInventory,
 
+    dialogue: null,
+    dialogueIndex: 0,
+
     setScreen: (screen) => set({ currentScreen: screen }),
 
+    startDialogue: (lines) =>
+        set(() => ({
+            dialogue: lines,
+            dialogueIndex: 0,
+        })),
+
+    nextDialogueLine: () =>
+        set((state) => {
+            if (
+                !state.dialogue ||
+                state.dialogueIndex >= state.dialogue.length - 1
+            ) {
+                return {
+                    dialogue: null,
+                    dialogueIndex: 0,
+                };
+            }
+
+            return { dialogueIndex: state.dialogueIndex + 1 };
+        }),
+
     chooseStarterPet: (petInfo) =>
-            set(() => ({
-                pet: {
-                    ...petInfo,
-                    stage: 0,
-                    hunger: 100,
-                    happiness: 100,
-                    energy: 100,
-                    adventuresCompleted: 0,
-                    adventureHistory: [],
-                    weird: 0,
-                    eerie: 0,
-                    style: 0,
-                },
-                currentScreen: "roomSelect",
+        set(() => ({
+            pet: {
+                ...petInfo,
+                stage: 0,
+                hunger: 100,
+                happiness: 100,
+                energy: 100,
+                adventuresCompleted: 0,
+                adventureHistory: [],
+                weird: 0,
+                eerie: 0,
+                style: 0,
+            },
+            currentScreen: "roomSelect",
         })),
 
     chooseStarterRoom: (roomId) =>

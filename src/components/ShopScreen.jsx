@@ -3,12 +3,14 @@ import useGameStore from '../hooks/useGameStore'
 import { shopLocations } from '../data/shops'
 import { useState } from 'react'
 import { items } from '../data/items'
+import DialogueBox from './DialogueBox'
+import { NPCs } from '../data/npcs'
 
 //this also looks like hell
 //but i don't want to change it right now
 
 const ShopScreen = () => {
-    const { pet, inventory, setScreen, purchaseItem, sellItem } = useGameStore();
+    const { pet, inventory, setScreen, purchaseItem, sellItem, startDialogue } = useGameStore();
 
     const [mode, setMode] = useState("buy");
 
@@ -30,12 +32,23 @@ const ShopScreen = () => {
         <div>
             <h2>Shop</h2>
 
+            <DialogueBox />
+
             {!selectedShop && (
                 <>
                     <h3>Available Shops</h3>
 
                     {unlockedShops.map(([key, shop]) => (
-                        <button key={key} onClick={() => setSelectedShop(key)}>
+                        <button
+                            key={key}
+                            onClick={() => {
+                                setSelectedShop(key);
+
+                                if (key === "General") {
+                                    startDialogue(NPCs.Shopkeeper.scenes.regular);
+                                }
+                            }}
+                        >
                             Enter {shop.name}
                         </button>
                     ))}

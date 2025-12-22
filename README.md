@@ -1,40 +1,39 @@
 # 🐾 Pet Sim Evolution Game
 
-A React-based virtual pet game where your pet grows and evolves based on how you care for it and the environments it explores. The core gameplay revolves around **autonomous adventure, environment-driven evolution, and light caretaking**.
+A React-based virtual pet game where your pet grows and evolves based on how you care for it and the environments it explores. The core gameplay revolves around autonomous adventure, environment and item-based evolutions, with light caretaking elements.
 
 ---
 
 ## Current Features (MVP)
-- 1 virtual pet with stats:
+- 16 base pets (with placeholder images for now) with stats:
   - Hunger
   - Happiness
   - Energy
+  - Some other stats for gameplay features which still need to be expanded upon
 - Buttons to feed, play, and rest
 - Time-based stat decay
-- 1 adventure location where your pet can go on timed missions
-- Adventure results (XP, stat changes, etc.)
-- Pet evolution when requirements are met
-- 1 basic progression unlock (new area or shop)
+- In-game day-night cycle affecting evolutions and events
+- 11 adventure locations (with placeholder images) where your pet can go on timed missions to gain stats and potentially bring back useful items
+- 1 base shop with 1 unlockable shop (more to come soon)
+- Pet Rooms (with placeholder images for now)
 
 ---
 
 ## Upcoming Features
-- Additional starting pets
-- Additional pet evolutions
+- Pet evolution lines with criterias
 - Additional pet stats
-- Multiple adventure areas to choose from
-- Multiple room layouts to choose from
 - Shops with items that affect gameplay
 - NPCs
+- Events
 - Saving
-- Improved sprites and graphics
+- Original sprites and artwork to replace the placeholders
 - Sound effects and animations
 
 ---
 
 ## Tech Stack
-- **React**
-- **JavaScript**
+- React
+- JavaScript
 - Vite
 - Zustand
 - Motion.js (possibly)

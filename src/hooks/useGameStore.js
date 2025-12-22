@@ -10,6 +10,9 @@ import { NPCs } from '../data/npcs'
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
 
+//coming back to this a few weeks later and it's really hard to find things
+//so i definitely need to move stuff over into separate files
+
 const TICKS_PER_MINUTE = 1;
 const MINUTES_PER_DAY = 24 * 60;
 

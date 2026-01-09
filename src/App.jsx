@@ -10,6 +10,7 @@ import StartScreen from './components/StartScreen'
 import RoomSelectScreen from './components/RoomSelectScreen'
 import EvolutionScreen from './components/EvolutionScreen'
 import { useEffect } from 'react'
+import AdventurePopUp from './components/AdventurePopUp'
 
 const App = () => {
     const SCREENS = {
@@ -36,6 +37,7 @@ const App = () => {
     return (
         <GameProvider>
             <Current />
+            <AdventurePopUp />
         </GameProvider>
     );
 }

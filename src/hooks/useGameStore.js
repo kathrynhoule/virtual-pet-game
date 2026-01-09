@@ -35,6 +35,8 @@ const useGameStore = create((set, get) => ({
     gameTime: 8 * 60,
 
     adventureMessages: [],
+    showAdventurePopUp: false,
+    adventurePopUpItems: [],
 
     startGameClock: () => {
         if (get()._clockStarted) return;
@@ -141,6 +143,18 @@ const useGameStore = create((set, get) => ({
             };
         }),
 
+    openAdventurePopUp: (messages) =>
+        set({
+            adventureMessages: messages,
+            showAdventurePopUp: true,
+        }),
+
+    closeAdventurePopUp: () =>
+        set({
+            adventureMessages: [],
+            adventurePopUpItems: [],
+            showAdventurePopUp: false,
+        }),
     currentAdventure: null,
 
     decayRates: {
@@ -240,9 +254,8 @@ const useGameStore = create((set, get) => ({
                 inventory: updatedInventory,
                 currentAdventure: null,
                 adventureMessages: statMessages,
-
-                clearAdventureMessages: () =>
-                    set({ adventureMessages: [] }),
+                adventurePopUpItems: rewards.items,
+                showAdventurePopUp: statMessages.length > 0 || rewards.items.length > 0,
             };
         }),
     

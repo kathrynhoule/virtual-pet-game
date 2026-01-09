@@ -7,6 +7,7 @@ import { items } from '../data/items'
 import { starterRoomOptions } from '../data/rooms'
 import { NPCs } from '../data/npcs'
 import { generateAdventureStatGains } from '../utils/adventureStats'
+import { generateStatMessages } from '../utils/adventureStatMessages'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -32,6 +33,8 @@ const useGameStore = create((set, get) => ({
     dialoguePersistent: false,
 
     gameTime: 8 * 60,
+
+    adventureMessages: [],
 
     startGameClock: () => {
         if (get()._clockStarted) return;
@@ -203,6 +206,7 @@ const useGameStore = create((set, get) => ({
             };
 
             const statGains = generateAdventureStatGains(locationData.statEffects);
+            const statMessages = generateStatMessages(statGains);
 
             //update pet stats
             const updatedPet = {
@@ -235,6 +239,10 @@ const useGameStore = create((set, get) => ({
                 pet: updatedPet,
                 inventory: updatedInventory,
                 currentAdventure: null,
+                adventureMessages: statMessages,
+
+                clearAdventureMessages: () =>
+                    set({ adventureMessages: [] }),
             };
         }),
     

@@ -6,6 +6,7 @@ import { defaultInventory } from '../data/inventory'
 import { items } from '../data/items'
 import { starterRoomOptions } from '../data/rooms'
 import { NPCs } from '../data/npcs'
+import { generateAdventureStatGains } from '../utils/adventureStats'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -201,13 +202,21 @@ const useGameStore = create((set, get) => ({
                 location: currentLocation,
             };
 
+            const statGains = generateAdventureStatGains(locationData.statEffects);
+
             //update pet stats
             const updatedPet = {
                 ...state.pet,
                 hunger: Math.max(state.pet.hunger - 10, 0),
                 energy: Math.max(state.pet.energy - 15, 0),
                 adventuresCompleted: state.pet.adventuresCompleted + 1,
-                adventureHistory: [...state.pet.adventureHistory, newEntry],
+                    adventureHistory: [...state.pet.adventureHistory, newEntry],
+                ...Object.fromEntries(
+                    Object.entries(statGains).map(([stat, amount]) => [
+                        stat,
+                        (state.pet[stat] || 0) + amount,
+                    ])
+                ),
             };
 
             //rewards

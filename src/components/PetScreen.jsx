@@ -1,0 +1,91 @@
+import React from 'react'
+import useGameStore from '../hooks/useGameStore';
+
+const PetScreen = () => {
+    const {
+        pet,
+        currentAdventure,
+        feedPet,
+        playWithPet,
+        restPet,
+        setScreen,
+        inventory,
+    } = useGameStore();
+
+    if (!pet) return <p>No pet selected.</p>;
+
+    const isAdventuring = currentAdventure !== null;
+
+    const getStatColor = (value) => {
+        if (value < 20) return "red";
+        if (value < 40) return "goldenrod";
+        return "black";
+    };
+
+    return (
+        <div>
+            <h2>{pet.name}</h2>
+            <img src={pet.image} alt={pet.name} width={150} />
+
+            <h3>Pet Stats</h3>
+            <p style={{ color: getStatColor(pet.hunger) }}>Hunger: {pet.hunger}</p>
+            <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>
+            <p style={{ color: getStatColor(pet.energy) }}>Energy: {pet.energy}</p>
+
+            {/* Show your "fun" stats too */}
+            <p>Weird: {pet.weird}</p>
+            <p>Eerie: {pet.eerie}</p>
+            <p>Style: {pet.style}</p>
+            <p>Grime: {pet.grime}</p>
+            <p>Neon: {pet.neon}</p>
+            <p>Mossy: {pet.mossy}</p>
+            <p>Hot: {pet.hot}</p>
+            <p>Wet: {pet.wet}</p>
+            <p>Cold: {pet.cold}</p>
+            <p>Mundane: {pet.mundane}</p>
+
+            <p>Adventures Completed: {pet.adventuresCompleted}</p>
+
+            {isAdventuring && <p>Your pet is away on an adventure!</p>}
+
+            <div style={{ marginTop: '1rem' }}>
+                <button onClick={feedPet} disabled={isAdventuring}>
+                    Feed
+                </button>
+                <button onClick={playWithPet} disabled={isAdventuring}>
+                    Play
+                </button>
+                <button onClick={restPet} disabled={isAdventuring}>
+                    Rest
+                </button>
+            </div>
+
+            <hr />
+
+            <h2>Inventory</h2>
+            <p>Money: {inventory.money}</p>
+
+            <h3>Items</h3>
+            {inventory.items.length === 0 && <p>No items yet.</p>}
+
+            <ul>
+                {Object.entries(inventory.items).map(([id, qty]) => {
+                    const itemData = itemDB[id];
+                    return (
+                        <li key={id}>
+                            {itemData ? itemData.name : `Unknown (${id})`} ×{qty}
+                        </li>
+                    );
+                })}
+            </ul>
+
+            <div style={{ marginTop: '1rem' }}>
+                <button onClick={() => setScreen("home")}>
+                    Back to Room
+                </button>
+            </div>
+        </div>
+    );
+}
+
+export default PetScreen

@@ -3,7 +3,7 @@ import useGameStore from "../hooks/useGameStore";
 import { items } from "../data/items";
 
 //currently this just appears at the bottom of whatever screen the player is on
-//will add css later
+//will add css later so it's a proper popup
 
 const AdventurePopUp = () => {
 const {

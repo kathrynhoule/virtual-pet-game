@@ -17,6 +17,7 @@ import guyPetImg from '../assets/pets/guy-pet.png'
 import galPetImg from '../assets/pets/gal-pet.png'
 
 //data for starter pets and their images
+//difficulties are set here but i don't think they are currently being used for anything
 
 export const starterPets = [
     {

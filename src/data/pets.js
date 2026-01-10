@@ -18,102 +18,103 @@ import galPetImg from '../assets/pets/gal-pet.png'
 
 //data for starter pets and their images
 //difficulties are set here but i don't think they are currently being used for anything
+//commented out all the pets except for the first 3 that i want to design
 
 export const starterPets = [
-    {
-        id: "bunny",
-        name: "Bunny Pet",
-        image: bunnyPetImg,
-        difficulty: "medium",
-    },
-    {
-        id: "cat",
-        name: "Cat Pet",
-        image: catPetImg,
-        difficulty: "medium",
-    },
-    {
-        id: "dog",
-        name: "Dog Pet",
-        image: dogPetImg,
-        difficulty: "medium",
-    },
-        {
-        id: "lizard",
-        name: "Lizard Pet",
-        image: lizardPetImg,
-        difficulty: "hard",
-    },
+    // {
+    //     id: "rabbit",
+    //     name: "Rabbit Pet",
+    //     image: bunnyPetImg,
+    //     difficulty: "medium",
+    // },
+    // {
+    //     id: "cat",
+    //     name: "Cat Pet",
+    //     image: catPetImg,
+    //     difficulty: "medium",
+    // },
+    // {
+    //     id: "dog",
+    //     name: "Dog Pet",
+    //     image: dogPetImg,
+    //     difficulty: "medium",
+    // },
+    // {
+    //     id: "lizard",
+    //     name: "Lizard Pet",
+    //     image: lizardPetImg,
+    //     difficulty: "hard",
+    // },
     {
         id: "ghost",
         name: "Ghost Pet",
         image: ghostPetImg,
         difficulty: "easy",
     },
+    // {
+    //     id: "virus",
+    //     name: "Virus Pet",
+    //     image: virusPetImg,
+    //     difficulty: "extreme",
+    // },
     {
-        id: "virus",
-        name: "Virus Pet",
-        image: virusPetImg,
-        difficulty: "extreme",
-    },
-        {
         id: "snake",
         name: "Snake Pet",
         image: snakePetImg,
         difficulty: "medium",
     },
-    {
-        id: "bird",
-        name: "Bird Pet",
-        image: birdPetImg,
-        difficulty: "medium",
-    },
-    {
-        id: "rock",
-        name: "Rock Pet",
-        image:  rockPetImg,
-        difficulty: "easy",
-    },
-        {
-        id: "plant",
-        name: "Plant Pet",
-        image: plantPetImg,
-        difficulty: "easy",
-    },
+    // {
+    //     id: "bird",
+    //     name: "Bird Pet",
+    //     image: birdPetImg,
+    //     difficulty: "medium",
+    // },
+    //{
+    //     id: "rock",
+    //     name: "Rock Pet",
+    //     image:  rockPetImg,
+    //     difficulty: "easy",
+    // },
+    // {
+    //     id: "plant",
+    //     name: "Plant Pet",
+    //     image: plantPetImg,
+    //     difficulty: "easy",
+    // },
     {
         id: "fish",
         name: "Fish Pet",
         image:  fishPetImg,
         difficulty: "medium",
     },
-    {
-        id: "bug",
-        name: "Bug Pet",
-        image: bugPetImg,
-        difficulty: "easy",
-    },
-        {
-        id: "alien",
-        name: "Alien Pet",
-        image:  alienPetImg,
-        difficulty: "extreme",
-    },
-        {
-        id: "horse",
-        name: "Horse Pet",
-        image: horsePetImg,
-        difficulty: "medium",
-    },
-    {
-        id: "Guy",
-        name: "Guy Pet",
-        image:  guyPetImg,
-        difficulty: "hard",
-    },
-    {
-        id: "Gal",
-        name: "Gal Pet",
-        image: galPetImg,
-        difficulty: "hard",
-    },
+    // {
+    //     id: "bug",
+    //     name: "Bug Pet",
+    //     image: bugPetImg,
+    //     difficulty: "easy",
+    // },
+    // {
+    //     id: "alien",
+    //     name: "Alien Pet",
+    //     image:  alienPetImg,
+    //     difficulty: "extreme",
+    // },
+    // {
+    //     id: "horse",
+    //     name: "Horse Pet",
+    //     image: horsePetImg,
+    //     difficulty: "medium",
+    // },
+    // {
+    //     id: "Guy",
+    //     name: "Guy Pet",
+    //     image:  guyPetImg,
+    //     difficulty: "hard",
+    // },
+    // {
+    //     id: "Gal",
+    //     name: "Gal Pet",
+    //     image: galPetImg,
+    //     difficulty: "hard",
+    // },
 ];

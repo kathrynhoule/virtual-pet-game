@@ -13,48 +13,54 @@ export const starterRoomOptions = {
         name: 'Old Room',
         image: oldRoomImg,
         statBonuses: {
-            eerie: 40,
-            weird: 40,
+            eerie: 30,
+            weird: 10,
+            grime: 10,
+            cold: 5,
+            mossy: 5,
         },
     },
     Cute: {
         name: 'Cute Room',
         image: pinkRoomImg,
         statBonuses: {
-            eerie: 5,
-            weird: 2,
+            style: 30,
+            mundane: 20,
         },
     },
     Simple: {
         name: 'Simple Room',
         image: simpleRoomImg,
         statBonuses: {
-            eerie: 5,
-            weird: 2,
+            mundane: 30,
         },
     },
     Cozy: {
         name: 'Cozy Room',
         image: cozyRoomImg,
         statBonuses: {
+            style: 10,
+            mundane: 10,
+            hot: 5,
             eerie: 5,
-            weird: 2,
         },
     },
     Cool: {
         name: 'Cool Room',
         image: coolRoomImg,
         statBonuses: {
-            eerie: 5,
-            weird: 2,
+            style: 30,
+            mundane: 10,
         },
     },
     Strange: {
         name: 'Strange Room',
         image: strangeRoomImg,
         statBonuses: {
-            eerie: 5,
-            weird: 2,
+            weird: 30,
+            neon: 20,
+            eerie: 10,
+            mossy: 5,
         },
     }
 };

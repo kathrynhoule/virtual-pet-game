@@ -26,8 +26,8 @@ export const snakeStageTwoEvolutions = [
         from: "snake",
         stage: 2,
         requirements: {
-            style: 10,
-            weird: 10,
+            style: 70,
+            weird: 50,
         },
     },
     {

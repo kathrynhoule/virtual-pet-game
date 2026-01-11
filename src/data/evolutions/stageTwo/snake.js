@@ -1,20 +1,20 @@
-import altSnakeImg from "../../assets/pets/evolutions/stageTwo/alt_snake.png";
-import brightSnakeImg from "../../assets/pets/evolutions/stageTwo/bright_snake.png";
-import confusedSnakeImg from "../../assets/pets/evolutions/stageTwo/confused_snake.png";
-import coolSnakeImg from "../../assets/pets/evolutions/stageTwo/cool_snake.png";
-import cuteSnakeImg from "../../assets/pets/evolutions/stageTwo/cute_snake.png";
-import deepSeaSnakeImg from "../../assets/pets/evolutions/stageTwo/deep_sea_snake.png";
-import digitalSnakeImg from "../../assets/pets/evolutions/stageTwo/digital_snake.png";
-import floralSnakeImg from "../../assets/pets/evolutions/stageTwo/floral_snake.png";
-import freezingSnakeImg from "../../assets/pets/evolutions/stageTwo/freezing_snake.png";
-import grossSnakeImg from "../../assets/pets/evolutions/stageTwo/gross_snake.png";
-import hauntedSnakeImg from "../../assets/pets/evolutions/stageTwo/haunted_snake.png";
-import mouldySnakeImg from "../../assets/pets/evolutions/stageTwo/mouldy_snake.png";
-import normalSnakeImg from "../../assets/pets/evolutions/stageTwo/normal_snake.png";
-import smokingSnakeImg from "../../assets/pets/evolutions/stageTwo/smoking_snake.png";
-import soakedSnakeImg from "../../assets/pets/evolutions/stageTwo/soaked_snake.png";
-import strangeSnakeImg from "../../assets/pets/evolutions/stageTwo/strange_snake.png";
-import virusSnakeImg from "../../assets/pets/evolutions/stageTwo/virus_snake.png";
+import altSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/alt_snake.png";
+import brightSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/bright_snake.png";
+import confusedSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/confused_snake.png";
+import coolSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/cool_snake.png";
+import cuteSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/cute_snake.png";
+import deepSeaSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/deep_sea_snake.png";
+import digitalSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/digital_snake.png";
+import floralSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/floral_snake.png";
+import freezingSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/freezing_snake.png";
+import grossSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/gross_snake.png";
+import hauntedSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/haunted_snake.png";
+import mouldySnakeImg from "@/assets/pets/evolutions/stageTwo/snake/mouldy_snake.png";
+import normalSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/normal_snake.png";
+import smokingSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/smoking_snake.png";
+import soakedSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/soaked_snake.png";
+import strangeSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/strange_snake.png";
+import virusSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/virus_snake.png";
 
 //second stage evolution data for snake pet
 
@@ -26,8 +26,8 @@ export const snakeStageTwoEvolutions = [
         from: "snake",
         stage: 2,
         requirements: {
-            style: 70,
-            weird: 50,
+            style: 10,
+            weird: 10,
         },
     },
     {

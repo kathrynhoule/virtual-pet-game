@@ -70,7 +70,7 @@ const PetScreen = () => {
 
             <ul>
                 {Object.entries(inventory.items).map(([id, qty]) => {
-                    const itemData = itemDB[id];
+                    const itemData = inventory[id];
                     return (
                         <li key={id}>
                             {itemData ? itemData.name : `Unknown (${id})`} ×{qty}

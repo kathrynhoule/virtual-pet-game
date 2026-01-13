@@ -19,6 +19,8 @@ import { eventLocations } from '../data/eventLocations'
 const TICKS_PER_MINUTE = 1;
 const MINUTES_PER_DAY = 24 * 60;
 
+const STAT_DECAY_INTERVAL = 5; //in minutes
+
 const useGameStore = create((set, get) => ({
     currentScreen: "start",
 
@@ -34,6 +36,8 @@ const useGameStore = create((set, get) => ({
     dialoguePersistent: false,
 
     gameTime: 8 * 60,
+
+    lastStatDecayTime: 8 * 60,
 
     adventureMessages: [],
     showAdventurePopUp: false,
@@ -55,7 +59,44 @@ const useGameStore = create((set, get) => ({
         set((state) => {
             let next = state.gameTime + 1;
             if (next >= MINUTES_PER_DAY) next = 0;
-            return { gameTime: next };
+
+            let newState = { gameTime: next };
+
+            //stat decay
+            const minutesPassed =
+            next >= state.lastStatDecayTime
+                ? next - state.lastStatDecayTime
+                : MINUTES_PER_DAY - state.lastStatDecayTime + next;
+
+            if (minutesPassed >= 60 && state.pet) {
+            newState.pet = {
+                ...state.pet,
+                hunger: Math.max(state.pet.hunger - 2, 0),
+                happiness: Math.max(state.pet.happiness - 0.5, 0),
+                energy: Math.max(state.pet.energy - 1, 0),
+            };
+            newState.lastStatDecayTime = next;
+            }
+
+            //complete rest
+            if (state.currentRest) {
+            const { startTime, endTime } = state.currentRest;
+
+            const finished =
+                startTime < endTime
+                ? next >= endTime
+                : next >= endTime && next < startTime;
+
+            if (finished && state.pet) {
+                newState.pet = {
+                ...state.pet,
+                energy: Math.min(state.pet.energy + 40, 100),
+                };
+                newState.currentRest = null;
+            }
+            }
+            
+            return newState;
         }),
 
     getFormattedTime: () => {
@@ -160,6 +201,8 @@ const useGameStore = create((set, get) => ({
         }),
     currentAdventure: null,
 
+    currentRest: null,
+
     decayRates: {
         hunger: 1,
         happiness: 1,
@@ -221,13 +264,26 @@ const useGameStore = create((set, get) => ({
         };
     }),
 
+    startRest: (duration = 60) =>
+        set((state) => {
+            if (!state.pet || state.currentAdventure || state.currentRest) {
+            return state;
+            }
+
+            const start = state.gameTime;
+            const end = (start + duration) % MINUTES_PER_DAY;
+
+            return {
+            currentRest: {
+                startTime: start,
+                endTime: end,
+            },
+            };
+    }),
+
     playWithPet: () =>
     set((state) => ({
         pet: { ...state.pet, happiness: Math.min(state.pet.happiness + 20, 100) },
-    })),
-    restPet: () =>
-    set((state) => ({
-        pet: { ...state.pet, energy: Math.min(state.pet.energy + 20, 100) },
     })),
 
     setLocation: (locationKey) =>

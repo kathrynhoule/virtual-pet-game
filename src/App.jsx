@@ -1,5 +1,4 @@
 import React from 'react'
-import useStatDecay from './hooks/useStatDecay'
 import useGameStore from './hooks/useGameStore'
 import HomeScreen from './components/HomeScreen'
 import AdventureScreen from './components/AdventureScreen'
@@ -26,7 +25,6 @@ const App = () => {
         location: LocationScreen,
     };
 
-    useStatDecay();
     useAdventureTimer();
 
     const currentScreen = useGameStore((state) => state.currentScreen);

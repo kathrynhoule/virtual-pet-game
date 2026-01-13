@@ -8,7 +8,8 @@ const PetScreen = () => {
         currentAdventure,
         feedPetWithItem,
         playWithPet,
-        restPet,
+        startRest,
+        currentRest,
         setScreen,
         inventory,
     } = useGameStore();
@@ -16,6 +17,8 @@ const PetScreen = () => {
     if (!pet) return <p>No pet selected.</p>;
 
     const isAdventuring = currentAdventure !== null;
+
+    const isResting = useGameStore((s) => s.currentRest !== null);
 
     const edibleInventory = Object.entries(inventory.items)
     .filter(([id]) => items[id]?.edible);
@@ -52,13 +55,16 @@ const PetScreen = () => {
 
             {isAdventuring && <p>Your pet is away on an adventure!</p>}
 
+            {isResting && <p>Your pet is resting.</p>}
+
             <div style={{ marginTop: '1rem' }}>
-                <button onClick={playWithPet} disabled={isAdventuring}>
-                    Play
-                </button>
-                <button onClick={restPet} disabled={isAdventuring}>
-                    Rest
-                </button>
+            <button onClick={playWithPet} disabled={isAdventuring || isResting}>
+            Play
+            </button>
+
+            <button onClick={() => startRest(60)} disabled={isAdventuring || isResting}>
+            Rest
+            </button>
 
                 <h3>Feed Your Pet</h3>
 

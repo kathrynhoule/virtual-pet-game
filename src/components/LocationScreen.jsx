@@ -3,14 +3,18 @@ import useGameStore from '../hooks/useGameStore'
 import { eventLocations } from '../data/eventLocations'
 
 import Lab from './Lab'
+import BulletinBoard from './BulletinBoard'
+import Woods from './Woods'
+import Dock from './Dock'
+import AbandonedHouse from './AbandonedHouse'
 
 
 const LOCATION_COMPONENTS = {
     Lab,
-    // BulletinBoard,
-    // Woods,
-    // Dock,
-    // AbandonedHouse,
+    BulletinBoard,
+    Woods,
+    Dock,
+    AbandonedHouse,
 };
 
 const LocationScreen = () => {

@@ -3,7 +3,7 @@ import { eventLocations } from '../data/eventLocations'
 import useGameStore from '../hooks/useGameStore'
 
 const LocationSelectScreen = () => {
-    const { setLocation } = useGameStore();
+    const { setLocation , setScreen } = useGameStore();
 
     return (
         <div>
@@ -22,8 +22,8 @@ const LocationSelectScreen = () => {
                 ))}
             </ul>
 
-            <button onClick={() => setLocation(null)}>
-                Go Back
+            <button onClick={() => setScreen("home")}>
+                Go Back Home
             </button>
         </div>
     )

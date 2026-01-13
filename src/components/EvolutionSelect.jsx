@@ -5,7 +5,7 @@ import { getEligibleEvolutions } from '../utils/petEvoRules';
 //i gotta update this later
 //maybe make it so that it goes on the lab screen so i can add some more stuff to the lab
 
-const EvolutionScreen = () => {
+const EvolutionSelect = () => {
     const pet = useGameStore((state) => state.pet);
     const evolvePet = useGameStore((state) => state.evolvePet);
 
@@ -30,11 +30,8 @@ const EvolutionScreen = () => {
                     {evo.name}
                 </button>
             ))}
-
-            <br /><br />
-            <button onClick={() => setScreen("home")}>Back Home</button>
         </div>
     );
 };
 
-export default EvolutionScreen;
+export default EvolutionSelect;

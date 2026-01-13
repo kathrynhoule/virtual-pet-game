@@ -8,7 +8,6 @@ import { GameProvider } from './context/GameContext'
 import ShopScreen from './components/ShopScreen'
 import StartScreen from './components/StartScreen'
 import RoomSelectScreen from './components/RoomSelectScreen'
-import EvolutionScreen from './components/EvolutionScreen'
 import { useEffect } from 'react'
 import AdventurePopUp from './components/AdventurePopUp'
 import PetScreen from './components/PetScreen'
@@ -22,7 +21,6 @@ const App = () => {
         shop: ShopScreen,
         start: StartScreen,
         roomSelect: RoomSelectScreen,
-        evolution: EvolutionScreen,
         pet: PetScreen,
         locationSelect: LocationSelectScreen,
         location: LocationScreen,

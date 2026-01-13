@@ -2,11 +2,11 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { eventLocations } from '../data/eventLocations'
 
-import EvolutionScreen from './EvolutionScreen'
+import Lab from './Lab'
 
 
 const LOCATION_COMPONENTS = {
-    EvolutionScreen,
+    Lab,
     // BulletinBoard,
     // Woods,
     // Dock,

@@ -12,9 +12,10 @@ const items = {
         buyPrice: 6,
         sellPrice: 3,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +10,
-        }
+        },
+        playable: false,
     },
     magicLeaf: {
         id: "magicLeaf",
@@ -24,9 +25,10 @@ const items = {
         buyPrice: 20,
         sellPrice: 10,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +5,
-        }
+        },
+        playable: false,
     },
     shell: {
         id: "shell",
@@ -36,6 +38,7 @@ const items = {
         buyPrice: 10,
         sellPrice: 5,
         edible: false,
+        playable: false,
     },
     fruit: {
         id: "fruit",
@@ -45,9 +48,10 @@ const items = {
         buyPrice: 8,
         sellPrice: 4,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +10,
-        }
+        },
+        playable: false,
     },
     seaweed: {
         id: "seaweed",
@@ -57,9 +61,10 @@ const items = {
         buyPrice: 4,
         sellPrice: 2,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +5,
-        }
+        },
+        playable: false,
     },
 
     //animal parts
@@ -71,9 +76,10 @@ const items = {
         buyPrice: 16,
         sellPrice: 8,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +5,
-        }
+        },
+        playable: false,
     },
     fish: {
         id: "fish",
@@ -83,9 +89,10 @@ const items = {
         buyPrice: 14,
         sellPrice: 7,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +15,
-        }
+        },
+        playable: false,
     },
     dragonBones: {
         id: "dragonBones",
@@ -95,9 +102,10 @@ const items = {
         buyPrice: 1000,
         sellPrice: 500,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +5,
-        }
+        },
+        playable: false,
     },
     maidenRemains: {
         id: "maidenRemains",
@@ -107,9 +115,10 @@ const items = {
         buyPrice: 600,
         sellPrice: 300,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +20,
         },
+        playable: false,
     },
 
     //treasures
@@ -121,6 +130,7 @@ const items = {
         buyPrice: 50,
         sellPrice: 25,
         edible: false,
+        playable: false,
     },
     fossil: {
         id: "fossil",
@@ -130,6 +140,7 @@ const items = {
         buyPrice: 60,
         sellPrice: 30,
         edible: false,
+        playable: false,
     },
     lostTreasure: {
         id: "lostTreasure",
@@ -139,6 +150,7 @@ const items = {
         buyPrice: 400,
         sellPrice: 200,
         edible: false,
+        playable: false,
     },
     iceCrystal: {
         id: "iceCrystal",
@@ -148,6 +160,7 @@ const items = {
         buyPrice: 44,
         sellPrice: 22,
         edible: false,
+        playable: false,
     },
     starPiece: {
         id: "starPiece",
@@ -157,9 +170,10 @@ const items = {
         buyPrice: 300,
         sellPrice: 150,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +5,
-        }
+        },
+        playable: false,
     },
     ring: {
         id: "ring",
@@ -169,6 +183,7 @@ const items = {
         buyPrice: 200,
         sellPrice: 100,
         edible: false,
+        playable: false,
     },
 
     //lab items
@@ -180,6 +195,7 @@ const items = {
         buyPrice: 30,
         sellPrice: 15,
         edible: false,
+        playable: false,
     },
     bloodSample: {
         id: "bloodSample",
@@ -189,9 +205,10 @@ const items = {
         buyPrice: 40,
         sellPrice: 20,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +2,
         },
+        playable: false,
     },
 
     //questionable items
@@ -203,9 +220,13 @@ const items = {
         buyPrice: 100,
         sellPrice: 50,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +10,
         },
+        playable: true,
+        playEffects: {
+            happiness: +10,
+        }
     },
     strangeTooth: {
         id: "strangeTooth",
@@ -215,6 +236,7 @@ const items = {
         buyPrice: 80,
         sellPrice: 40,
         edible: false,
+        playable: false,
     },
     frozenSoul: {
         id: "frozenSoul",
@@ -224,9 +246,13 @@ const items = {
         buyPrice: 160,
         sellPrice: 80,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +0,
         },
+        playable: true,
+        playEffects: {
+            happiness: +15,
+        }
     },
     ungoodEgg: {
         id: "ungoodEgg",
@@ -236,6 +262,7 @@ const items = {
         buyPrice: 180,
         sellPrice: 90,
         edible: false,
+        playable: false,
     },
 
     //collectibles
@@ -247,6 +274,7 @@ const items = {
         buyPrice: 24,
         sellPrice: 12,
         edible: false,
+        playable: false,
     },
 
     //pet care items
@@ -258,9 +286,10 @@ const items = {
         buyPrice: 30,
         sellPrice: 15,
         edible: true,
-        effects: {
+        eatEffects: {
             hunger: +15,
         },
+        playable: false,
     },
     secondhandBall: {
         id: "secondhandBall",
@@ -270,6 +299,10 @@ const items = {
         buyPrice: 10,
         sellPrice: 5,
         edible: false,
+        playable: true,
+        playEffects: {
+            happiness: +10,
+        }
     },
     brush: {
         id: "brush",
@@ -279,6 +312,7 @@ const items = {
         buyPrice: 50,
         sellPrice: 25,
         edible: false,
+        playable: false,
     },
     shampoo: {
         id: "shampoo",
@@ -288,6 +322,7 @@ const items = {
         buyPrice: 40,
         sellPrice: 20,
         edible: false,
+        playable: false,
     },
     squeakyToy: {
         id: "squeakyToy",
@@ -297,6 +332,10 @@ const items = {
         buyPrice: 30,
         sellPrice: 15,
         edible: false,
+        playable: true,
+        playEffects: {
+            happiness: +10,
+        }
     },
     largePlush: {
         id: "largePlush",
@@ -306,6 +345,10 @@ const items = {
         buyPrice: 150,
         sellPrice: 75,
         edible: false,
+        playable: true,
+        playEffects: {
+            happiness: +25,
+        }
     },
     scratchPad: {
         id: "scratchPad",
@@ -315,6 +358,10 @@ const items = {
         buyPrice: 70,
         sellPrice: 35,
         edible: false,
+        playable: true,
+        playEffects: {
+            happiness: +15,
+        }
     },
 };
 

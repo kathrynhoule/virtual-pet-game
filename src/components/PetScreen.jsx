@@ -7,7 +7,7 @@ const PetScreen = () => {
         pet,
         currentAdventure,
         feedPetWithItem,
-        playWithPet,
+        playWithPetItem,
         startRest,
         currentRest,
         setScreen,
@@ -22,6 +22,9 @@ const PetScreen = () => {
 
     const edibleInventory = Object.entries(inventory.items)
     .filter(([id]) => items[id]?.edible);
+
+    const playableInventory = Object.entries(inventory.items)
+    .filter(([id]) => items[id]?.playable);
 
     const getStatColor = (value) => {
         if (value < 20) return "red";
@@ -39,7 +42,7 @@ const PetScreen = () => {
             <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>
             <p style={{ color: getStatColor(pet.energy) }}>Energy: {pet.energy}</p>
 
-            {/* Show your "fun" stats too */}
+            {/* shows all player pet stats for now, might change this later */}
             <p>Weird: {pet.weird}</p>
             <p>Eerie: {pet.eerie}</p>
             <p>Style: {pet.style}</p>
@@ -58,13 +61,33 @@ const PetScreen = () => {
             {isResting && <p>Your pet is resting.</p>}
 
             <div style={{ marginTop: '1rem' }}>
-            <button onClick={playWithPet} disabled={isAdventuring || isResting}>
-            Play
-            </button>
-
             <button onClick={() => startRest(60)} disabled={isAdventuring || isResting}>
             Rest
             </button>
+
+                <h3>Play With Pet</h3>
+
+                    {playableInventory.length === 0 && (
+                        <p>You have no toys.</p>
+                    )}
+
+                    <ul>
+                        {playableInventory.map(([id, qty]) => {
+                            const item = items[id];
+
+                            return (
+                                <li key={id}>
+                                    {item.name} ×{qty}
+                                    <button
+                                        onClick={() => playWithPetItem(id)}
+                                        disabled={isAdventuring || isResting}
+                                    >
+                                        Play
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
 
                 <h3>Feed Your Pet</h3>
 
@@ -81,7 +104,7 @@ const PetScreen = () => {
                                     {item.name} ×{qty}
                                     <button
                                         onClick={() => feedPetWithItem(id)}
-                                        disabled={isAdventuring}
+                                        disabled={isAdventuring || isResting}
                                     >
                                         Feed
                                     </button>

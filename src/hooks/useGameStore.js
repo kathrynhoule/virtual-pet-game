@@ -8,6 +8,7 @@ import { starterRoomOptions } from '../data/rooms'
 import { NPCs } from '../data/npcs'
 import { generateAdventureStatGains } from '../utils/adventureStats'
 import { generateStatMessages } from '../utils/adventureStatMessages'
+import { eventLocations } from '../data/eventLocations'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -37,6 +38,8 @@ const useGameStore = create((set, get) => ({
     adventureMessages: [],
     showAdventurePopUp: false,
     adventurePopUpItems: [],
+
+    currentLocation: null,
 
     startGameClock: () => {
         if (get()._clockStarted) return;
@@ -186,6 +189,12 @@ const useGameStore = create((set, get) => ({
     set((state) => ({
         pet: { ...state.pet, energy: Math.min(state.pet.energy + 20, 100) },
     })),
+
+    setLocation: (locationKey) =>
+        set({
+            currentLocation: locationKey,
+            currentScreen: "location",
+        }),
 
     gainXP: (amount) => set((state) => ({ xp: state.xp + amount })),
 

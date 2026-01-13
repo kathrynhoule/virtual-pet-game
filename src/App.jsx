@@ -12,6 +12,8 @@ import EvolutionScreen from './components/EvolutionScreen'
 import { useEffect } from 'react'
 import AdventurePopUp from './components/AdventurePopUp'
 import PetScreen from './components/PetScreen'
+import LocationSelectScreen from './components/LocationSelectScreen'
+import LocationScreen from './components/LocationScreen'
 
 const App = () => {
     const SCREENS = {
@@ -22,6 +24,8 @@ const App = () => {
         roomSelect: RoomSelectScreen,
         evolution: EvolutionScreen,
         pet: PetScreen,
+        locationSelect: LocationSelectScreen,
+        location: LocationScreen,
     };
 
     useStatDecay();

@@ -3,7 +3,7 @@ import { getEligibleEvolutions } from '../utils/petEvoRules'
 import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
-import { items } from '../data/items'
+import items from '../data/items'
 import { starterRoomOptions } from '../data/rooms'
 import { NPCs } from '../data/npcs'
 import { generateAdventureStatGains } from '../utils/adventureStats'
@@ -177,10 +177,50 @@ const useGameStore = create((set, get) => ({
         })),
 
     //pet actions
-    feedPet: () =>
-    set((state) => ({
-        pet: { ...state.pet, hunger: Math.min(state.pet.hunger + 20, 100) },
-    })),
+    feedPetWithItem: (itemId) =>
+        set((state) => {
+            const item = items[itemId];
+            if (!item || !item.edible) return state;
+
+            const currentQty = state.inventory.items[itemId];
+            if (!currentQty || currentQty <= 0) return state;
+
+            //apply effects
+            const effects = item.effects || {};
+
+            const updatedPet = {
+                ...state.pet,
+                hunger: Math.min(
+                    100,
+                    state.pet.hunger + (effects.hunger || 0)
+                ),
+                happiness: Math.min(
+                    100,
+                    state.pet.happiness + (effects.happiness || 0)
+                ),
+                energy: Math.min(
+                    100,
+                    state.pet.energy + (effects.energy || 0)
+                ),
+            };
+
+            //remove item from inventory
+            const updatedItems = { ...state.inventory.items };
+            if (currentQty === 1) {
+                delete updatedItems[itemId];
+            } else {
+                updatedItems[itemId] = currentQty - 1;
+            }
+
+            return {
+                pet: updatedPet,
+                inventory: {
+                    ...state.inventory,
+                    items: updatedItems,
+                },
+        };
+    }),
+
     playWithPet: () =>
     set((state) => ({
         pet: { ...state.pet, happiness: Math.min(state.pet.happiness + 20, 100) },

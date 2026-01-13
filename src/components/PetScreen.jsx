@@ -1,11 +1,12 @@
 import React from 'react'
 import useGameStore from '../hooks/useGameStore';
+import items from '../data/items';
 
 const PetScreen = () => {
     const {
         pet,
         currentAdventure,
-        feedPet,
+        feedPetWithItem,
         playWithPet,
         restPet,
         setScreen,
@@ -15,6 +16,9 @@ const PetScreen = () => {
     if (!pet) return <p>No pet selected.</p>;
 
     const isAdventuring = currentAdventure !== null;
+
+    const edibleInventory = Object.entries(inventory.items)
+    .filter(([id]) => items[id]?.edible);
 
     const getStatColor = (value) => {
         if (value < 20) return "red";
@@ -49,15 +53,36 @@ const PetScreen = () => {
             {isAdventuring && <p>Your pet is away on an adventure!</p>}
 
             <div style={{ marginTop: '1rem' }}>
-                <button onClick={feedPet} disabled={isAdventuring}>
-                    Feed
-                </button>
                 <button onClick={playWithPet} disabled={isAdventuring}>
                     Play
                 </button>
                 <button onClick={restPet} disabled={isAdventuring}>
                     Rest
                 </button>
+
+                <h3>Feed Your Pet</h3>
+
+                    {edibleInventory.length === 0 && (
+                        <p>You have no food items.</p>
+                    )}
+
+                    <ul>
+                        {edibleInventory.map(([id, qty]) => {
+                            const item = items[id];
+
+                            return (
+                                <li key={id}>
+                                    {item.name} ×{qty}
+                                    <button
+                                        onClick={() => feedPetWithItem(id)}
+                                        disabled={isAdventuring}
+                                    >
+                                        Feed
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
             </div>
 
             <hr />
@@ -70,7 +95,7 @@ const PetScreen = () => {
 
             <ul>
                 {Object.entries(inventory.items).map(([id, qty]) => {
-                    const itemData = inventory[id];
+                    const itemData = items[id];
                     return (
                         <li key={id}>
                             {itemData ? itemData.name : `Unknown (${id})`} ×{qty}

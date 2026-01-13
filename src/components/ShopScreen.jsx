@@ -2,7 +2,7 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import { shopLocations } from '../data/shops'
 import { useState } from 'react'
-import { items } from '../data/items'
+import items from '../data/items'
 import DialogueBox from './DialogueBox'
 import { NPCs } from '../data/npcs'
 

@@ -2,7 +2,6 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore'
 import InventoryScreen from './InventoryScreen'
 import { starterRoomOptions } from '../data/rooms'
-import { items as itemDB } from "../data/items";
 
 //this is a little hell to look at right now
 //will fix later

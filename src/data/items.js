@@ -2,7 +2,7 @@
 //should this be organized more? yah maybe
 //will update item descriptions later
 
-export const items = {
+const items = {
     //nature items
     mushroom: {
         id: "mushroom",
@@ -317,3 +317,5 @@ export const items = {
         edible: false,
     },
 };
+
+export default items;

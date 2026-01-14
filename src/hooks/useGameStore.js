@@ -1,14 +1,13 @@
 import { create } from 'zustand'
-import { getEligibleEvolutions } from '../utils/petEvoRules'
 import { adventureLocations } from '../data/adventures'
 import generateAdventureRewards from '../utils/adventureRewards'
 import { defaultInventory } from '../data/inventory'
 import items from '../data/items'
 import { starterRoomOptions } from '../data/rooms'
-import { NPCs } from '../data/npcs'
 import { generateAdventureStatGains } from '../utils/adventureStats'
 import { generateStatMessages } from '../utils/adventureStatMessages'
-import { eventLocations } from '../data/eventLocations'
+import createTimeSlice from './slices/timeSlice'
+import createPetSlice from './slices/petSlice'
 
 //oh it's hell to look at right now with everything in one file
 //i'll do something about that later
@@ -16,25 +15,12 @@ import { eventLocations } from '../data/eventLocations'
 //coming back to this a few weeks later and it's really hard to find things
 //so i definitely need to move stuff over into separate files
 
-const TICKS_PER_MINUTE = 1;
-const MINUTES_PER_DAY = 24 * 60;
-
-const RED_THRESHOLD = 20;
-const SICKNESS_TIME = 5; //5 real-life minutes
 
 const useGameStore = create((set, get) => ({
-    currentScreen: "start",
+    ...createTimeSlice(set, get),
+    ...createPetSlice(set, get),
 
-    pet: {
-        status: {
-            sick: false,
-        },
-        dangerTime: {
-            hunger: 0,
-            happiness: 0,
-            energy: 0,
-        },
-    },
+    currentScreen: "start",
 
     room: null,
 
@@ -45,105 +31,11 @@ const useGameStore = create((set, get) => ({
     dialogueSpeaker: null,
     dialoguePersistent: false,
 
-    gameTime: 8 * 60,
-
-    lastStatDecayTime: 8 * 60,
-
     adventureMessages: [],
     showAdventurePopUp: false,
     adventurePopUpItems: [],
 
     currentLocation: null,
-
-    startGameClock: () => {
-        if (get()._clockStarted) return;
-
-        const interval = setInterval(() => {
-            get().advanceTime();
-        }, 1000 * TICKS_PER_MINUTE);
-
-        set({ _clockStarted: true, _clockInterval: interval });
-    },
-
-    advanceTime: () =>
-        set((state) => {
-            let next = state.gameTime + 1;
-            if (next >= MINUTES_PER_DAY) next = 0;
-
-            let newState = { gameTime: next };
-
-            //stat decay
-            const minutesPassed =
-            next >= state.lastStatDecayTime
-                ? next - state.lastStatDecayTime
-                : MINUTES_PER_DAY - state.lastStatDecayTime + next;
-
-            if (minutesPassed >= 60 && state.pet) {
-            newState.pet = {
-                ...state.pet,
-                hunger: Math.max(state.pet.hunger - 2, 0),
-                happiness: Math.max(state.pet.happiness - 0.5, 0),
-                energy: Math.max(state.pet.energy - 1, 0),
-            };
-            newState.lastStatDecayTime = next;
-            }
-
-            //complete rest
-            if (state.currentRest) {
-            const { startTime, endTime } = state.currentRest;
-
-            const finished =
-                startTime < endTime
-                ? next >= endTime
-                : next >= endTime && next < startTime;
-
-            if (finished && state.pet) {
-                newState.pet = {
-                ...state.pet,
-                energy: Math.min(state.pet.energy + 40, 100),
-                };
-                newState.currentRest = null;
-            }
-            }
-
-            //sickness
-            if (newState.pet) {
-                const dangerTime = { ...newState.pet.dangerTime };
-
-                for (const stat of ["hunger", "happiness", "energy"]) {
-                    if (newState.pet[stat] < RED_THRESHOLD) {
-                    dangerTime[stat] += 1;
-                    } else {
-                    dangerTime[stat] = 0;
-                    }
-                }
-
-                const isSick = Object.values(dangerTime).some(
-                    (time) => time >= SICKNESS_TIME
-                );
-
-                newState.pet = {
-                    ...newState.pet,
-                    dangerTime,
-                    status: {
-                    ...newState.pet.status,
-                    sick: isSick,
-                    },
-                };
-            }
-
-            return newState;
-        }),
-
-    getFormattedTime: () => {
-        const time = get().gameTime;
-        const hours = Math.floor(time / 60);
-        const minutes = time % 60;
-        const hour12 = ((hours + 11) % 12) + 1;
-        const ampm = hours < 12 ? "AM" : "PM";
-        const padded = minutes.toString().padStart(2, "0");
-        return `${hour12}:${padded} ${ampm}`;
-    },
 
     getTimeOfDay: () => {
         const t = get().gameTime;
@@ -245,6 +137,7 @@ const useGameStore = create((set, get) => ({
             adventurePopUpItems: [],
             showAdventurePopUp: false,
         }),
+
     currentAdventure: null,
 
     currentRest: null,
@@ -264,112 +157,6 @@ const useGameStore = create((set, get) => ({
                 energy: Math.max(state.pet.energy - state.decayRates.energy, 0),
             },
         })),
-
-    //pet actions
-    feedPetWithItem: (itemId) =>
-        set((state) => {
-            const item = items[itemId];
-            if (!item || !item.edible) return state;
-
-            const currentQty = state.inventory.items[itemId];
-            if (!currentQty || currentQty <= 0) return state;
-
-            //apply effects
-            const effects = item.eatEffects || {};
-
-            const updatedPet = {
-                ...state.pet,
-                hunger: Math.min(
-                    100,
-                    state.pet.hunger + (effects.hunger || 0)
-                ),
-                happiness: Math.min(
-                    100,
-                    state.pet.happiness + (effects.happiness || 0)
-                ),
-                energy: Math.min(
-                    100,
-                    state.pet.energy + (effects.energy || 0)
-                ),
-            };
-
-            //remove item from inventory
-            const updatedItems = { ...state.inventory.items };
-            if (currentQty === 1) {
-                delete updatedItems[itemId];
-            } else {
-                updatedItems[itemId] = currentQty - 1;
-            }
-
-            return {
-                pet: updatedPet,
-                inventory: {
-                    ...state.inventory,
-                    items: updatedItems,
-                },
-        };
-    }),
-
-    startRest: (duration = 60) =>
-        set((state) => {
-            if (!state.pet || state.currentAdventure || state.currentRest) {
-            return state;
-            }
-
-            const start = state.gameTime;
-            const end = (start + duration) % MINUTES_PER_DAY;
-
-            return {
-            currentRest: {
-                startTime: start,
-                endTime: end,
-            },
-            };
-    }),
-
-    playWithPetItem: (itemId) =>
-        set((state) => {
-            const item = items[itemId];
-            if (!item || !item.playable) return state;
-
-            const currentQty = state.inventory.items[itemId];
-            if (!currentQty || currentQty <= 0) return state;
-
-            //apply effects
-            const effects = item.playEffects || {};
-
-            const updatedPet = {
-                ...state.pet,
-                hunger: Math.min(
-                    100,
-                    state.pet.hunger + (effects.hunger || 0)
-                ),
-                happiness: Math.min(
-                    100,
-                    state.pet.happiness + (effects.happiness || 0)
-                ),
-                energy: Math.min(
-                    100,
-                    state.pet.energy + (effects.energy || 0)
-                ),
-            };
-
-            //remove item from inventory
-            const updatedItems = { ...state.inventory.items };
-            if (currentQty === 1) {
-                delete updatedItems[itemId];
-            } else {
-                updatedItems[itemId] = currentQty - 1;
-            }
-
-            return {
-                pet: updatedPet,
-                inventory: {
-                    ...state.inventory,
-                    items: updatedItems,
-                },
-        };
-    }),
 
     setLocation: (locationKey) =>
         set({
@@ -496,17 +283,6 @@ const useGameStore = create((set, get) => ({
             },
         };
     }),
-
-    evolvePet: (evo) =>
-    set((state) => ({
-        pet: {
-            ...state.pet,
-            id: evo.id,
-            name: evo.name,
-            image: evo.image,
-            stage: state.pet.stage + 1,
-        },
-    })),
 }));
 
 export default useGameStore;

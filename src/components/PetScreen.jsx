@@ -37,6 +37,12 @@ const PetScreen = () => {
             <h2>{pet.name}</h2>
             <img src={pet.image} alt={pet.name} width={150} />
 
+            {pet.status?.sick && (
+                <p style={{ color: "red" }}>
+                    Your pet has become sick!
+                </p>
+            )}
+
             <h3>Pet Stats</h3>
             <p style={{ color: getStatColor(pet.hunger) }}>Hunger: {pet.hunger}</p>
             <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>

@@ -1,6 +1,6 @@
 import React from 'react'
-import useGameStore from '../hooks/useGameStore'
-import { eventLocations } from '../data/eventLocations'
+import useGameStore from '../../hooks/useGameStore'
+import { eventLocations } from '../../data/eventLocations'
 
 import Lab from './Lab'
 import BulletinBoard from './BulletinBoard'

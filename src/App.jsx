@@ -10,8 +10,8 @@ import RoomSelectScreen from './components/RoomSelectScreen'
 import { useEffect } from 'react'
 import AdventurePopUp from './components/AdventurePopUp'
 import PetScreen from './components/PetScreen'
-import LocationSelectScreen from './components/LocationSelectScreen'
-import LocationScreen from './components/LocationScreen'
+import LocationSelectScreen from './components/locations/LocationSelectScreen'
+import LocationScreen from './components/locations/LocationScreen'
 
 const App = () => {
     const SCREENS = {

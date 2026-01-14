@@ -1,6 +1,6 @@
 import React from 'react'
-import { eventLocations } from '../data/eventLocations'
-import useGameStore from '../hooks/useGameStore'
+import { eventLocations } from '../../data/eventLocations'
+import useGameStore from '../../hooks/useGameStore'
 
 const LocationSelectScreen = () => {
     const { setLocation , setScreen } = useGameStore();

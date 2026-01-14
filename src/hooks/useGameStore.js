@@ -19,12 +19,22 @@ import { eventLocations } from '../data/eventLocations'
 const TICKS_PER_MINUTE = 1;
 const MINUTES_PER_DAY = 24 * 60;
 
-const STAT_DECAY_INTERVAL = 5; //in minutes
+const RED_THRESHOLD = 20;
+const SICKNESS_TIME = 5; //5 real-life minutes
 
 const useGameStore = create((set, get) => ({
     currentScreen: "start",
 
-    pet: null,
+    pet: {
+        status: {
+            sick: false,
+        },
+        dangerTime: {
+            hunger: 0,
+            happiness: 0,
+            energy: 0,
+        },
+    },
 
     room: null,
 
@@ -96,6 +106,32 @@ const useGameStore = create((set, get) => ({
             }
             }
 
+            //sickness
+            if (newState.pet) {
+                const dangerTime = { ...newState.pet.dangerTime };
+
+                for (const stat of ["hunger", "happiness", "energy"]) {
+                    if (newState.pet[stat] < RED_THRESHOLD) {
+                    dangerTime[stat] += 1;
+                    } else {
+                    dangerTime[stat] = 0;
+                    }
+                }
+
+                const isSick = Object.values(dangerTime).some(
+                    (time) => time >= SICKNESS_TIME
+                );
+
+                newState.pet = {
+                    ...newState.pet,
+                    dangerTime,
+                    status: {
+                    ...newState.pet.status,
+                    sick: isSick,
+                    },
+                };
+            }
+
             return newState;
         }),
 
@@ -149,6 +185,16 @@ const useGameStore = create((set, get) => ({
                 hunger: 100,
                 happiness: 100,
                 energy: 100,
+
+                status: {
+                    sick: false,
+                },
+                dangerTime: {
+                    hunger: 0,
+                    happiness: 0,
+                    energy: 0,
+                },
+
                 adventuresCompleted: 0,
                 adventureHistory: [],
                 weird: 0,

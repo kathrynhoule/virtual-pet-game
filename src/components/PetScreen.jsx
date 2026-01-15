@@ -9,7 +9,6 @@ const PetScreen = () => {
         feedPetWithItem,
         playWithPetItem,
         startRest,
-        currentRest,
         setScreen,
         inventory,
     } = useGameStore();

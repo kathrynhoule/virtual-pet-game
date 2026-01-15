@@ -13,6 +13,8 @@ const createPetSlice = (set) => ({
         },
     },
 
+        currentRest: null,
+
     //pet actions
     feedPetWithItem: (itemId) =>
         set((state) => {

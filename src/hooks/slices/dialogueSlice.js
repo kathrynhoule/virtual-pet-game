@@ -7,7 +7,7 @@ const createDialogueSlice = (set, get) => ({
     dialogueSpeaker: null,
     dialoguePersistent: false,
 
-startDialogue: (scene) =>
+    startDialogue: (scene) =>
         set(() => ({
             dialogue: scene.lines,
             dialogueIndex: 0,

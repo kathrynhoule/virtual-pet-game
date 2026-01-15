@@ -2,9 +2,9 @@ import React from 'react'
 import { starterRoomOptions } from '../../data/rooms';
 
 const createChooseSlice = (set, get) => ({
-        room: null,
+    room: null,
 
-chooseStarterPet: (petInfo) =>
+    chooseStarterPet: (petInfo) =>
         set(() => ({
             pet: {
                 ...petInfo,

@@ -2,7 +2,8 @@ import React from 'react'
 import items from "../../data/items";
 
 const createPetSlice = (set) => ({
-        pet: {
+
+    pet: {
         status: {
             sick: false,
         },
@@ -13,7 +14,7 @@ const createPetSlice = (set) => ({
         },
     },
 
-        currentRest: null,
+    currentRest: null,
 
     //pet actions
     feedPetWithItem: (itemId) =>
@@ -47,7 +48,8 @@ const createPetSlice = (set) => ({
             const updatedItems = { ...state.inventory.items };
             if (currentQty === 1) {
                 delete updatedItems[itemId];
-            } else {
+            } 
+            else {
                 updatedItems[itemId] = currentQty - 1;
             }
 
@@ -63,17 +65,17 @@ const createPetSlice = (set) => ({
     startRest: (duration = 60) =>
         set((state) => {
             if (!state.pet || state.currentAdventure || state.currentRest) {
-            return state;
+                return state;
             }
 
             const start = state.gameTime;
             const end = (start + duration) % MINUTES_PER_DAY;
 
             return {
-            currentRest: {
-                startTime: start,
-                endTime: end,
-            },
+                currentRest: {
+                    startTime: start,
+                    endTime: end,
+                },
             };
     }),
 
@@ -108,7 +110,8 @@ const createPetSlice = (set) => ({
             const updatedItems = { ...state.inventory.items };
             if (currentQty === 1) {
                 delete updatedItems[itemId];
-            } else {
+            }
+            else {
                 updatedItems[itemId] = currentQty - 1;
             }
 
@@ -121,16 +124,16 @@ const createPetSlice = (set) => ({
         };
     }),
 
-        evolvePet: (evo) =>
-    set((state) => ({
-        pet: {
-            ...state.pet,
-            id: evo.id,
-            name: evo.name,
-            image: evo.image,
-            stage: state.pet.stage + 1,
-        },
-    })),
+    evolvePet: (evo) =>
+        set((state) => ({
+            pet: {
+                ...state.pet,
+                id: evo.id,
+                name: evo.name,
+                image: evo.image,
+                stage: state.pet.stage + 1,
+            },
+        })),
 
 })
 

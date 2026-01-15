@@ -1,6 +1,14 @@
 //all items
+
 //should this be organized more? yah maybe
+//there's almost no way i can leave this as just 1 gigantic file
+//but for now that's what it's gonna be
+
 //will update item descriptions later
+//also need to add more status effects and general effects for the items that are already here
+//some of these i want to tie into evolutions but i'm not sure how to do that yet
+
+//also need to add more items
 
 const items = {
     //nature items

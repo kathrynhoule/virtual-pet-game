@@ -1,5 +1,4 @@
 //generates stat gains when pet comes back from an adventure
-//i might change how this works later
 
 export function generateAdventureStatGains(statEffects = {}) {
     const gains = {};

@@ -2,6 +2,13 @@ import React from 'react'
 import useGameStore from '../hooks/useGameStore';
 import items from '../data/items';
 
+//this has become kind of overwhelming
+//so i'll probably have to split this up into multiple components at some point
+//i also currently am displaying just everything all at once, so it's a lot on one screen
+//maybe i'll have like, different tabs on the pet screen that the player can flip through
+//and maybe i'll add the inventory screen here too so the player doesn't have to go back to the home screen to see it
+//and for far in the future, it would be nice if there was some visual change or emoticon based on the pet's health or status effects
+
 const PetScreen = () => {
     const {
         pet,
@@ -47,7 +54,6 @@ const PetScreen = () => {
             <p style={{ color: getStatColor(pet.happiness) }}>Happiness: {pet.happiness}</p>
             <p style={{ color: getStatColor(pet.energy) }}>Energy: {pet.energy}</p>
 
-            {/* shows all player pet stats for now, might change this later */}
             <p>Weird: {pet.weird}</p>
             <p>Eerie: {pet.eerie}</p>
             <p>Style: {pet.style}</p>

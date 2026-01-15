@@ -1,3 +1,4 @@
+//placeholder images
 import altSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/alt_snake.png";
 import brightSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/bright_snake.png";
 import confusedSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/confused_snake.png";
@@ -17,6 +18,8 @@ import strangeSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/strange_sna
 import virusSnakeImg from "@/assets/pets/evolutions/stageTwo/snake/virus_snake.png";
 
 //second stage evolution data for snake pet
+//need to update the requirements to make more sense with actual gameplay
+//also need to update the images for these so it's not just the placeholder files
 
 export const snakeStageTwoEvolutions = [
     {

@@ -1,7 +1,12 @@
 import React from 'react'
 import useGameStore from '../hooks/useGameStore'
-import InventoryScreen from './InventoryScreen'
 import { starterRoomOptions } from '../data/rooms'
+
+//so far this is fine
+//i do want to update this a little so that you can view your inventory from here and maybe don't have to go to the pet screen to see it
+//and also i would like it if the in-game clock displayed here only changed the display every 15 or 30 in-game minutes, so it's not so stressfull
+//i would also like it if there was some kind of visual change based on the time of day, like mood lighting or something
+//but that's for whenever i finally decide to add style sheets
 
 const HomeScreen = () => {
     const {

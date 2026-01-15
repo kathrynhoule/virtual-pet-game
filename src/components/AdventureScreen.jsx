@@ -5,6 +5,10 @@ import { adventureLocations } from '../data/adventures'
 //will get rid of the inline styling later
 //i don't want to do css right now
 
+//so far most of it is fine right now
+//except that pets can still go on adventures even if it requires more energy/hunger than they have
+//so i'll have to fix that at some point
+
 const AdventureScreen = () => {
     const { currentAdventure, setScreen, startAdventure, pet } = useGameStore();
 

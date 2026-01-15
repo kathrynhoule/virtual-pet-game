@@ -7,12 +7,8 @@ import createAdventureSlice from './slices/adventureSlice'
 import createChooseSlice from './slices/chooseSlice'
 import createDialogueSlice from './slices/dialogueSlice'
 
-//oh it's hell to look at right now with everything in one file
-//i'll do something about that later
-
-//coming back to this a few weeks later and it's really hard to find things
-//so i definitely need to move stuff over into separate files
-
+//not sure if anything else makes sense to move over to its own slice right now
+//so for now i'm fine with it
 
 const useGameStore = create((set, get) => ({
     ...createTimeSlice(set, get),
@@ -29,27 +25,6 @@ const useGameStore = create((set, get) => ({
     currentLocation: null,
 
     setScreen: (screen) => set({ currentScreen: screen }),
-
-    startDialogue: (scene) =>
-        set(() => ({
-            dialogue: scene.lines,
-            dialogueIndex: 0,
-            dialogueSpeaker: scene.speaker || null,
-            dialoguePersistent: scene.persistent || false,
-        })),
-
-    nextDialogueLine: () =>
-        set((state) => {
-            if (!state.dialogue || state.dialogueIndex >= state.dialogue.length - 1) {
-                return {
-                    dialogue: null,
-                    dialogueIndex: 0,
-                    dialoguePersistent: false,
-                };
-            }
-
-            return { dialogueIndex: state.dialogueIndex + 1 };
-        }),
 
     decayRates: {
         hunger: 1,

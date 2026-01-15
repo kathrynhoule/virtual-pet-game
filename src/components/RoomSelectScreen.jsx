@@ -6,6 +6,8 @@ import DialogueBox from './DialogueBox'
 import { useEffect } from 'react'
 
 //for choosing room at the start of the game
+//i think this is fine for now?
+//definitely will get rid of the inline styling eventually
 
 const RoomSelectScreen = () => {
     const { chooseStarterRoom, startDialogue, dialogue } = useGameStore();

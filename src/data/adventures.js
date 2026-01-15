@@ -1,21 +1,22 @@
-import forestImg from '../assets/locations/Forest.png';
-import caveImg from '../assets/locations/Cave.png';
-import beachImg from '../assets/locations/Beach.png';
-import cityImg from '../assets/locations/City.png';
-import desertImg from '../assets/locations/Desert.png';
-import labImg from '../assets/locations/Lab.png';
-import parlorImg from '../assets/locations/Parlor.png';
-import seafloorImg from '../assets/locations/Seafloor.png';
-import snowImg from '../assets/locations/Snow.png';
-import spaceImg from '../assets/locations/Space.png';
-import volcanoImg from '../assets/locations/Volcano.png';
+import forestImg from '../assets/locations/adventures/Forest.png';
+import caveImg from '../assets/locations/adventures/Cave.png';
+import beachImg from '../assets/locations/adventures/Beach.png';
+import cityImg from '../assets/locations/adventures/City.png';
+import desertImg from '../assets/locations/adventures/Desert.png';
+import labImg from '../assets/locations/adventures/Lab.png';
+import parlorImg from '../assets/locations/adventures/Parlor.png';
+import seafloorImg from '../assets/locations/adventures/Seafloor.png';
+import snowImg from '../assets/locations/adventures/Snow.png';
+import spaceImg from '../assets/locations/adventures/Space.png';
+import volcanoImg from '../assets/locations/adventures/Volcano.png';
 
 //data for adventure locations
 //might add more items and details later
-//will likely make adventures add stat points to pets
 
 //item details are stored in items.js
 //durations for adventures are in seconds
+
+//need to update the stat gains, especially for the earlier stages
 
 export const adventureLocations = {
     Forest: {

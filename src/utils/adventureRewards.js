@@ -1,6 +1,4 @@
 //generates rewards for adventures based on location data
-//used in useGameStore.js
-//will need an update if i add a luck stat to pets later
 
 function generateAdventureRewards(locationData) {
     const results = {

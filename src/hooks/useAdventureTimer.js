@@ -2,8 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import useGameStore from './useGameStore'
 
-//this could be a bit more readable for future me's sake
-//might want to add notifications later on as well
+//i gotta update this
 
 const useAdventureTimer = () => {
     useEffect(() => {

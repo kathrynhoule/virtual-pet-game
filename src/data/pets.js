@@ -1,4 +1,4 @@
-//starter pet image imports
+//placeholder images
 import bunnyPetImg from '../assets/pets/base/bunny-pet.png'
 import catPetImg from '../assets/pets/base/cat-pet.png'
 import dogPetImg from '../assets/pets/base/dog-pet.png'
@@ -16,9 +16,11 @@ import horsePetImg from '../assets/pets/base/horse-pet.png'
 import guyPetImg from '../assets/pets/base/guy-pet.png'
 import galPetImg from '../assets/pets/base/gal-pet.png'
 
-//data for starter pets and their images
+//data for starter pets
+
 //difficulties are set here but i don't think they are currently being used for anything
-//commented out all the pets except for the first 3 that i want to design
+
+//commented out all the pets except for the first 3 that i want to design/work with
 
 export const starterPets = [
     // {

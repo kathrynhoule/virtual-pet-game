@@ -1,5 +1,6 @@
-//i don't think i've actually used this for anything yet
-//but i will eventually
+//need to add some placeholder images
+//also more info once i have it
+//cuz so far everything except the lab has nothing except a description so far
 
 export const eventLocations = {
     Lab: {

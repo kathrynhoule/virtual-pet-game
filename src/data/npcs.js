@@ -1,9 +1,14 @@
+//placeholder images
 import shopkeeperImg from '../assets/characters/shopkeeper.png'
 
 //NPCs with placeholder images and dialogues
 //more NPCs and dialogues will be added later
 //will also add images later
 //will also actually do something with this later
+
+//there's literally no way i can leave this as 1 file for all NPCs and all dialogue for all events once i actually add more than 1 NPC and actually start adding events
+//but that's for future me to worry about
+//this future me person is really going to hate current me
 
 export const NPCs = {
     Shopkeeper: {

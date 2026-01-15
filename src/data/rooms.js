@@ -1,3 +1,4 @@
+//placeholder images
 import oldRoomImg from '../assets/locations/rooms/old-room.png'
 import pinkRoomImg from '../assets/locations/rooms/pink-room.png'
 import simpleRoomImg from '../assets/locations/rooms/simple-room.png'
@@ -6,7 +7,13 @@ import coolRoomImg from '../assets/locations/rooms/cool-room.png'
 import strangeRoomImg from '../assets/locations/rooms/strange-room.png'
 
 //data for starter room options and their images
-//just placeholder images right now
+
+//this is just data for the starter rooms
+//i might not keep all of these starter room options, since some feel a little redundant
+//might try to narrow it down to just 4 instead of 6
+
+//at some point i also need to add data (probably in another file) for rooms that you can purchase at a shop
+//because these only really work with the base pets and some evolutions, but certainly not most of the evolutions
 
 export const starterRoomOptions = {
     Old: {

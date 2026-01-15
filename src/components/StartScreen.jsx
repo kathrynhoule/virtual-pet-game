@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 
 //for choosing starter pet at the beginning of the game
 //probably should have called this something else
+//i will definitely change the name when i work on this again later
 
 const StartScreen = () => {
     const { chooseStarterPet, startDialogue, dialogue } = useGameStore();

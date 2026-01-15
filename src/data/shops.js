@@ -1,8 +1,7 @@
-//will add in placeholder images and data for shopkeepers later
-//don't feel like it right now
-//also need a few more shops later on
-
 //item data is stored in items.js
+
+//only 2 shop locations right now, but i might honestly combine these 2 into one shop
+//will also definitely add other shops later (for things like rooms, etc.)
 
 export const shopLocations = {
     General: {

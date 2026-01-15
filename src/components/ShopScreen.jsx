@@ -8,6 +8,10 @@ import { NPCs } from '../data/npcs'
 
 //this also looks like hell
 //but i don't want to change it right now
+//also i think i did something wrong here? but also it works fine so that's for future me to look into
+//right now there is no visual or text feedback when a player successfully buys an item or unsuccessfully (doesn't have enough money for it)
+//so i gotta add that b/c it's confused af right now
+//i definitely want to add shopkeeper NPCs at some point
 
 const ShopScreen = () => {
     const { pet, inventory, setScreen, purchaseItem, sellItem, startDialogue } = useGameStore();

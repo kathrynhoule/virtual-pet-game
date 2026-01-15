@@ -10,7 +10,6 @@ const createAdventureSlice = (set, get) => ({
     adventurePopUpItems: [],
     currentAdventure: null,
 
-//adventures
     startAdventure: (location = "Forest") =>
         set((state) => {
             const locationData = adventureLocations[location];
@@ -80,7 +79,8 @@ const createAdventureSlice = (set, get) => ({
             };
         }),
         
-            openAdventurePopUp: (messages) =>
+    //popup for when pet returns from an adventure
+    openAdventurePopUp: (messages) =>
         set({
             adventureMessages: messages,
             showAdventurePopUp: true,

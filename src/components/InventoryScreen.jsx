@@ -1,8 +1,7 @@
 import React from 'react'
 
-//displays inventory
-//i gotta do something else with this later
-//will make it not directly on the home screen
+//i can't recall completely, but i think i maybe am not using this at all right now?
+//maybe i'll update it and use it in the future though, so i'm not going to delete it just yet
 
 const InventoryScreen = ({ inventory }) => {
     return (

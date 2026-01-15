@@ -6,6 +6,8 @@ import { NPCs } from "../data/npcs";
 //for now i just want something to make sure it works
 //and i think it's funny that the felicity image for the shopkeeper has squished proportions
 //so i want to leave it for now lol
+//and i'll have to figure out how to do different scenes and different NPCs
+//but that's for after i add events
 
 const DialogueBox = () => {
     const { dialogue, dialogueIndex, nextDialogueLine, dialogueSpeaker, dialoguePersistent } = useGameStore();

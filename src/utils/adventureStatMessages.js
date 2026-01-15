@@ -8,13 +8,12 @@ export function generateStatMessages(statGains = {}) {
     const messages = [];
 
     for (const stat of Object.keys(statGains)) {
-    const options = statMessages[stat];
-    if (!options || options.length === 0) continue;
+        const options = statMessages[stat];
+        if (!options || options.length === 0) continue;
 
-    const message =
-        options[Math.floor(Math.random() * options.length)];
+        const message = options[Math.floor(Math.random() * options.length)];
 
-    messages.push(message);
+        messages.push(message);
     }
 
     return messages;

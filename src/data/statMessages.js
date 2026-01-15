@@ -1,4 +1,6 @@
+//stat messages that display when a pet returns from an adventure and gained a stat increase
 //array incase i want to add multiple message options per stat later
+//idk if i will b/c that might be confusing for the player...but i might also change my mind on that
 
 export const statMessages = {
     weird: [

@@ -1,5 +1,7 @@
 import React from 'react'
 
+//same as abandoned house comments
+
 const Woods = ({ data }) => {
   return (
     <div>
